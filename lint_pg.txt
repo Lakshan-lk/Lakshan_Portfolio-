@@ -1,0 +1,31 @@
+
+D:\Lakshan\portfolio\components\Playground.tsx
+  122:11  warning  'randomDuration' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
+  122:32  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+D:\Lakshan\portfolio\components\Playground.tsx:122:32
+  120 | const FloatingShot = ({ shot, index }: { shot: Shot; index: number }) => {
+  121 |     // Randomize float duration so they don't move in sync
+> 122 |     const randomDuration = 4 + Math.random() * 2;
+      |                                ^^^^^^^^^^^^^ Cannot call impure function
+  123 |     const randomDelay = Math.random() * 2;
+  124 |
+  125 |     return (           react-hooks/purity
+  123:11  warning  'randomDelay' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+  123:25  error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+D:\Lakshan\portfolio\components\Playground.tsx:123:25
+  121 |     // Randomize float duration so they don't move in sync
+  122 |     const randomDuration = 4 + Math.random() * 2;
+> 123 |     const randomDelay = Math.random() * 2;
+      |                         ^^^^^^^^^^^^^ Cannot call impure function
+  124 |
+  125 |     return (
+  126 |         <div className="break-inside-avoid mb-6"> {/* Prevents breaking across columns */}  react-hooks/purity
+
+✖ 4 problems (2 errors, 2 warnings)
+

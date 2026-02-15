@@ -1,0 +1,29 @@
+
+D:\Lakshan\portfolio\components\Playground.tsx
+  131:52  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+D:\Lakshan\portfolio\components\Playground.tsx:131:52
+  129 | // --- Single Shot Component ---
+  130 | const FloatingShot = ({ shot, index }: { shot: Shot; index: number }) => {
+> 131 |     const randomDuration = React.useMemo(() => 4 + Math.random() * 2, []);
+      |                                                    ^^^^^^^^^^^^^ Cannot call impure function
+  132 |     const randomDelay = React.useMemo(() => Math.random() * 2, []);
+  133 |
+  134 |     return (            react-hooks/purity
+  132:45  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+D:\Lakshan\portfolio\components\Playground.tsx:132:45
+  130 | const FloatingShot = ({ shot, index }: { shot: Shot; index: number }) => {
+  131 |     const randomDuration = React.useMemo(() => 4 + Math.random() * 2, []);
+> 132 |     const randomDelay = React.useMemo(() => Math.random() * 2, []);
+      |                                             ^^^^^^^^^^^^^ Cannot call impure function
+  133 |
+  134 |     return (
+  135 |         <div className="break-inside-avoid mb-6">  react-hooks/purity
+
+✖ 2 problems (2 errors, 0 warnings)
+

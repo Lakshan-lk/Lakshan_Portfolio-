@@ -1,0 +1,30 @@
+
+D:\Lakshan\portfolio\components\Playground.tsx
+  120:48  error  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 @typescript-eslint/no-explicit-any
+  121:32  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+D:\Lakshan\portfolio\components\Playground.tsx:121:32
+  119 | // --- Single Shot Component ---
+  120 | const FloatingShot = ({ shot, index }: { shot: any; index: number }) => {
+> 121 |     const randomDuration = 4 + Math.random() * 2;
+      |                                ^^^^^^^^^^^^^ Cannot call impure function
+  122 |     const randomDelay = Math.random() * 2;
+  123 |
+  124 |     return (            react-hooks/purity
+  122:25  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+D:\Lakshan\portfolio\components\Playground.tsx:122:25
+  120 | const FloatingShot = ({ shot, index }: { shot: any; index: number }) => {
+  121 |     const randomDuration = 4 + Math.random() * 2;
+> 122 |     const randomDelay = Math.random() * 2;
+      |                         ^^^^^^^^^^^^^ Cannot call impure function
+  123 |
+  124 |     return (
+  125 |         <div className="break-inside-avoid mb-6">  react-hooks/purity
+
+✖ 3 problems (3 errors, 0 warnings)
+
