@@ -6,7 +6,7 @@ import { Mail, ArrowUpRight, MapPin, ArrowUp } from "lucide-react";
 import { FaGithub, FaLinkedin, FaBehance, FaTwitter, FaInstagram, FaFacebook, FaWhatsapp } from "react-icons/fa";
 
 export const Contact = () => {
-    
+
     // --- Configuration ---
     const SOCIAL_LINKS = [
         { name: "GitHub", icon: FaGithub, url: "https://github.com/ekanayaka" },
@@ -20,7 +20,7 @@ export const Contact = () => {
     const NAV_LINKS = [
         { name: "Home", href: "#home" },
         { name: "About", href: "#about" },
-        { name: "Projects", href: "#projects" }, // Ensure Projects.tsx has id="projects"
+        { name: "Projects", href: "#projects" },
         { name: "Services", href: "#services" },
         { name: "Skills", href: "#skills" },
     ];
@@ -49,7 +49,7 @@ export const Contact = () => {
 
     return (
         <section id="contact" className="relative py-24 px-6 md:px-12 lg:px-20 overflow-hidden min-h-screen flex flex-col justify-between">
-            
+
             {/* Background Glows */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-purple-600/20 blur-[120px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 right-0 w-[400px] h-[300px] bg-cyan-600/10 blur-[100px] rounded-full pointer-events-none" />
@@ -82,7 +82,7 @@ export const Contact = () => {
                         <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-cyan-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                         <div className="bg-slate-950/80 backdrop-blur-md rounded-[22px] p-8 md:p-16 border border-white/10 relative overflow-hidden">
-                            
+
                             {/* Inner Card Glows */}
                             <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 blur-[80px] rounded-full pointer-events-none" />
                             <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan-500/10 blur-[80px] rounded-full pointer-events-none" />

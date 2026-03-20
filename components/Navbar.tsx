@@ -91,7 +91,7 @@ export function Navbar() {
                                 transition={{ delay: 0.6 }}
                             >
                                 <a 
-                                    href="/Lakshan_CV.pdf" 
+                                    href="/Lakshan Ekanayaka.pdf" 
                                     download
                                     className="flex items-center justify-center gap-2 w-full py-3 mt-2 font-bold text-black bg-cyan-400 rounded-xl hover:bg-cyan-300"
                                 >

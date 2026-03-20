@@ -70,7 +70,7 @@ export const Hero = () => {
                     <a href="#projects" className="flex items-center gap-2 px-6 py-3 font-semibold text-white transition-all duration-300 rounded-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:scale-105 hover:shadow-[0_0_20px_rgba(8,145,178,0.5)]">
                         View Projects <ArrowRight size={20} />
                     </a>
-                    <a href="/Lakshan_CV.pdf" download className="flex items-center gap-2 px-6 py-3 font-semibold transition-all duration-300 border rounded-full text-slate-300 border-slate-700 hover:bg-slate-800 hover:text-white hover:border-slate-500">
+                    <a href="/Lakshan Ekanayaka.pdf" download className="flex items-center gap-2 px-6 py-3 font-semibold transition-all duration-300 border rounded-full text-slate-300 border-slate-700 hover:bg-slate-800 hover:text-white hover:border-slate-500">
                         Download CV <Download size={20} />
                     </a>
                 </motion.div>

@@ -13,7 +13,7 @@ const timelineData = [
         subtitle: "All In One Holding (Pvt) Ltd",
         description: "Designing intuitive user interfaces and enhancing user experiences for digital products. Translating business requirements into functional, visually appealing designs using Figma.",
         icon: Briefcase,
-        tags: ["UI/UX", "Prototyping", "Figma"],
+        tags: ["UI/UX", "Figma", "Web Design", "Mobile Design"],
     },
     {
         year: "2023 - 2027",
@@ -21,15 +21,15 @@ const timelineData = [
         subtitle: "SLIIT",
         description: "Specializing in Information Technology with a strong foundation in programming, algorithms, and software engineering. Exploring the intersection of creative design and technical development.",
         icon: GraduationCap,
-        tags: ["Undergraduate", "Information Technology"],
+        tags: ["Undergraduate", "Information Technology", "SLIIT"],
     },
     {
         year: "2008 - 2022",
-        title: "School Education",
+        title: "Primary & Secondary Education",
         subtitle: "Kingswood College, Kandy",
         description: "Completed G.C.E. Ordinary Level and Advanced Level education with a strong foundation in core academic subjects, logical reasoning, and problem-solving skills.",
         icon: School,
-        tags: ["Kingswood College", "G.C.E A/L"],
+        tags: ["Kingswood College", "G.C.E A/L", "G.C.E O/L", "KCK"],
     },
 ];
 
@@ -73,12 +73,13 @@ export const About = () => {
                             About <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">Me</span>
                         </h2>
 
-                        <p className="text-gray-400 text-lg leading-relaxed mb-6">
-                            I am a motivated <span className="text-white font-medium">3rd Year IT Undergraduate at SLIIT</span> with a dual passion for UI/UX Designer and Frontend Developer.
+                        <p className="text-gray-400 text-lg leading-relaxed font-medium mb-6">
+                            I am a motivated <span className="text-white font-medium">3rd Year IT Undergraduate at SLIIT</span> with a dual passion for <span className="text-white font-medium">UI/UX Design</span> and <span className="text-white font-medium">Frontend Development.</span>
                         </p>
-                        <p className="text-gray-300 text-lg leading-relaxed font-medium">
-                            While I started with a focus on code, I found my true calling in creating intuitive, user-centered designs. Now, I bridge the gap between <span className="text-cyan-300">technical logic</span> and <span className="text-purple-300">creative magic</span>, leveraging tools like Figma and technologies like React to build modern, responsive applications that look beautiful and work perfectly.
+                        <p className="text-gray-400 text-lg leading-relaxed font-medium">
+                            While I started with a focus on code, I found my true calling in creating intuitive, user-centered designs. Now, I bridge the gap between <span className="text-cyan-300 font-medium">Technical Logic</span> and <span className="text-purple-300 font-medium">Creative Magic</span>, leveraging tools like <span className="text-cyan-300 font-medium">Figma</span> and technologies like <span className="text-cyan-300 font-medium">React</span> to build modern, responsive applications that look beautiful and work perfectly.
                         </p>
+
                     </motion.div>
 
                     {/* Right: Photo & Stats */}
@@ -88,6 +89,7 @@ export const About = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                         className="relative flex justify-center lg:justify-end"
+
                     >
                         {/* Floating Container */}
                         <motion.div
@@ -108,23 +110,30 @@ export const About = () => {
                             </div>
 
                             {/* 2. The Stats Card */}
-                            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[90%] bg-slate-900/60 backdrop-blur-xl border border-white/10 p-6 rounded-xl shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] z-20">
-                                <div className="flex justify-between items-center divide-x divide-white/10">
-                                    <div className="flex flex-col items-center px-4 w-1/3">
-                                        <Figma className="w-6 h-6 text-purple-400 mb-2" />
-                                        <span className="text-xs text-gray-400 uppercase tracking-wider">Design</span>
-                                        <span className="text-white font-bold text-sm md:text-base">Figma & UX</span>
+                            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[95%] md:w-[90%] bg-slate-900/80 backdrop-blur-xl border border-white/10 p-4 md:p-6 rounded-xl shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] z-20">
+                                <div className="flex justify-between items-stretch divide-x divide-white/10">
+                                    
+                                    {/* Design */}
+                                    <div className="flex flex-col items-center justify-start px-2 md:px-4 w-1/3 text-center">
+                                        <Figma className="w-5 h-5 md:w-6 md:h-6 text-purple-400 mb-2" />
+                                        <span className="text-[10px] md:text-xs text-gray-400 uppercase tracking-wider mb-1">Design</span>
+                                        <span className="text-white font-bold text-[11px] md:text-base leading-tight">Figma & UI/UX</span>
                                     </div>
-                                    <div className="flex flex-col items-center px-4 w-1/3">
-                                        <Code2 className="w-6 h-6 text-cyan-400 mb-2" />
-                                        <span className="text-xs text-gray-400 uppercase tracking-wider">Code</span>
-                                        <span className="text-white font-bold text-sm md:text-base">React & Next</span>
+                                    
+                                    {/* Code */}
+                                    <div className="flex flex-col items-center justify-start px-2 md:px-4 w-1/3 text-center">
+                                        <Code2 className="w-5 h-5 md:w-6 md:h-6 text-cyan-400 mb-2" />
+                                        <span className="text-[10px] md:text-xs text-gray-400 uppercase tracking-wider mb-1">Code</span>
+                                        <span className="text-white font-bold text-xs md:text-base leading-tight">React & Next</span>
                                     </div>
-                                    <div className="flex flex-col items-center px-4 w-1/3">
-                                        <Sparkles className="w-6 h-6 text-yellow-400 mb-2" />
-                                        <span className="text-xs text-gray-400 uppercase tracking-wider">Focus</span>
-                                        <span className="text-white font-bold text-sm md:text-base">User Centric</span>
+                                    
+                                    {/* Focus */}
+                                    <div className="flex flex-col items-center justify-start px-2 md:px-4 w-1/3 text-center">
+                                        <Sparkles className="w-5 h-5 md:w-6 md:h-6 text-yellow-400 mb-2" />
+                                        <span className="text-[10px] md:text-xs text-gray-400 uppercase tracking-wider mb-1">Focus</span>
+                                        <span className="text-white font-bold text-xs md:text-base leading-tight">User Centric</span>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </motion.div>

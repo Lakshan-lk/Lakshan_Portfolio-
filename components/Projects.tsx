@@ -111,7 +111,7 @@ export const Projects = () => {
     };
 
     return (
-        <section id="work" className="relative py-24 px-6 md:px-12 bg-transparent overflow-hidden">
+        <section id="projects" className="relative py-24 px-6 md:px-12 bg-transparent overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 {/* Header & Tabs */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
