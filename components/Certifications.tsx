@@ -1,32 +1,31 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { ExternalLink, Calendar } from "lucide-react";
-// We don't need 'next/image' if we use SVGs/Icons, but keeping it if you download logos.
-// For now, let's use REACT ICONS for the Logos to make it look clean immediately.
-import { FcGoogle } from "react-icons/fc"; // Google Logo
-import { FaMeta, FaHackerrank } from "react-icons/fa6"; // Meta & HackerRank
-import { SiCisco } from "react-icons/si"; // Cisco
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ExternalLink, Calendar, ChevronDown, ChevronUp } from "lucide-react";
+import { FcGoogle } from "react-icons/fc"; 
+import { FaMeta, FaHackerrank, FaAws, FaMicrosoft } from "react-icons/fa6"; // Added AWS & Microsoft
+import { SiCisco } from "react-icons/si"; 
 
 interface Certification {
     id: number;
     title: string;
     org: string;
     date: string;
-    icon: React.ReactNode; // Changed from image string to Icon component
+    icon: React.ReactNode;
     link: string;
     color: string;
     borderColor: string;
 }
 
+// ---------------------- DATA ----------------------
 const certifications: Certification[] = [
     {
         id: 1,
         title: "Google UX Design Professional Certificate",
         org: "Coursera / Google",
         date: "Issued Dec 2025",
-        icon: <FcGoogle className="w-16 h-16" />, // Google Logo
+        icon: <FcGoogle className="w-16 h-16" />,
         link: "#",
         color: "bg-blue-500/10",
         borderColor: "group-hover:border-blue-500/50"
@@ -36,7 +35,7 @@ const certifications: Certification[] = [
         title: "Meta Frontend Developer Professional Certificate",
         org: "Coursera / Meta",
         date: "Issued Nov 2025",
-        icon: <FaMeta className="w-14 h-14 text-blue-500" />, // Meta Logo
+        icon: <FaMeta className="w-14 h-14 text-blue-500" />,
         link: "#",
         color: "bg-cyan-500/10",
         borderColor: "group-hover:border-cyan-500/50"
@@ -46,7 +45,7 @@ const certifications: Certification[] = [
         title: "React (Basic) Skills Certification",
         org: "HackerRank",
         date: "Issued Oct 2025",
-        icon: <FaHackerrank className="w-14 h-14 text-green-500" />, // HackerRank Logo
+        icon: <FaHackerrank className="w-14 h-14 text-green-500" />,
         link: "#",
         color: "bg-green-500/10",
         borderColor: "group-hover:border-green-500/50"
@@ -56,14 +55,40 @@ const certifications: Certification[] = [
         title: "Introduction to Cybersecurity",
         org: "Cisco Networking Academy",
         date: "Issued Sep 2025",
-        icon: <SiCisco className="w-14 h-14 text-sky-500" />, // Cisco Logo
+        icon: <SiCisco className="w-14 h-14 text-sky-500" />,
         link: "#",
         color: "bg-purple-500/10",
         borderColor: "group-hover:border-purple-500/50"
+    },
+    // --- Extra Certifications (Hidden initially) ---
+    {
+        id: 5,
+        title: "AWS Cloud Practitioner Essentials",
+        org: "Amazon Web Services",
+        date: "Issued Aug 2025",
+        icon: <FaAws className="w-14 h-14 text-orange-500" />,
+        link: "#",
+        color: "bg-orange-500/10",
+        borderColor: "group-hover:border-orange-500/50"
+    },
+    {
+        id: 6,
+        title: "Microsoft Azure Fundamentals (AZ-900)",
+        org: "Microsoft",
+        date: "Issued Jul 2025",
+        icon: <FaMicrosoft className="w-14 h-14 text-blue-400" />,
+        link: "#",
+        color: "bg-blue-600/10",
+        borderColor: "group-hover:border-blue-600/50"
     }
 ];
 
 export const Certifications = () => {
+    const [showAll, setShowAll] = useState(false);
+
+    // Show first 4 initially, or all if showAll is true
+    const visibleCertifications = showAll ? certifications : certifications.slice(0, 4);
+
     return (
         <section id="certifications" className="relative py-24 px-6 md:px-12 bg-transparent">
             <div className="max-w-7xl mx-auto">
@@ -86,10 +111,32 @@ export const Certifications = () => {
 
                 {/* Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {certifications.map((cert, index) => (
-                        <CertificationCard key={cert.id} cert={cert} index={index} />
-                    ))}
+                    <AnimatePresence>
+                        {visibleCertifications.map((cert, index) => (
+                            <CertificationCard key={cert.id} cert={cert} index={index} />
+                        ))}
+                    </AnimatePresence>
                 </div>
+
+                {/* See All Button */}
+                {certifications.length > 4 && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        className="mt-12 flex justify-center"
+                    >
+                        <button
+                            onClick={() => setShowAll(!showAll)}
+                            className="group flex items-center gap-2 px-8 py-3 bg-white/5 border border-white/10 rounded-full text-white font-semibold hover:bg-cyan-500/10 hover:border-cyan-500/50 hover:text-cyan-400 transition-all duration-300"
+                        >
+                            {showAll ? (
+                                <>Show Less <ChevronUp className="w-5 h-5 group-hover:-translate-y-1 transition-transform" /></>
+                            ) : (
+                                <>See All Certifications <ChevronDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" /></>
+                            )}
+                        </button>
+                    </motion.div>
+                )}
 
             </div>
         </section>
@@ -100,14 +147,13 @@ const CertificationCard = ({ cert, index }: { cert: Certification; index: number
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-            className={`group relative flex flex-col sm:flex-row items-center sm:items-stretch gap-6 bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 ${cert.borderColor} transition-all duration-300 backdrop-blur-sm`}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, delay: index * 0.05 }}
+            className={`group relative flex flex-col sm:flex-row items-center sm:items-stretch gap-6 bg-white/5 border border-white/10 p-6 rounded-2xl hover:bg-white/10 ${cert.borderColor} transition-all duration-300 backdrop-blur-sm h-full`}
         >
             {/* Logo Placeholder (Left Side) */}
             <div className={`w-full sm:w-32 h-32 shrink-0 rounded-xl ${cert.color} border border-white/5 flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-500`}>
-                {/* Displaying the Icon/Logo */}
                 {cert.icon}
             </div>
 
@@ -134,7 +180,6 @@ const CertificationCard = ({ cert, index }: { cert: Certification; index: number
                     View Certification <ExternalLink className="w-3 h-3" />
                 </a>
             </div>
-
         </motion.div>
     );
 };

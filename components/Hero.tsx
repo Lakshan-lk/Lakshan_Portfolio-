@@ -9,7 +9,7 @@ import { FaGithub, FaLinkedin, FaBehance, FaFacebook, FaInstagram, FaWhatsapp } 
 
 export const Hero = () => {
     return (
-        <section className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 overflow-hidden md:flex-row md:justify-between md:px-20 pt-20 md:pt-0">
+        <section className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 overflow-hidden md:flex-row md:justify-between md:px-20 pt-25 md:pt-0">
             {/* Text Content */}
             <div className="flex flex-col items-center text-center md:items-start md:text-left md:w-1/2">
                 <motion.div
@@ -57,8 +57,8 @@ export const Hero = () => {
                     transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
                     className="max-w-lg mt-6 text-lg text-slate-400"
                 >
-                    Crafting digital experiences where design meets code. Specialized in
-                    building futuristic, diverse, and accessible web applications.
+                    Crafting Immersive Digital Experiences Where Design Meets Code. Specialized in
+                    Building Futuristic, Accessible, and User Centric Web Applications.
                 </motion.p>
 
                 <motion.div
@@ -82,12 +82,12 @@ export const Hero = () => {
                     transition={{ duration: 1, delay: 1.2 }}
                     className="flex gap-6 mt-12 items-center"
                 >
-                    <SocialLink href="https://github.com/ekanayaka" icon={<FaGithub size={24} />} />
+                    <SocialLink href="https://github.com/Lakshan-lk" icon={<FaGithub size={24} />} />
                     <SocialLink href="https://linkedin.com/in/lakshan-ekanayaka" icon={<FaLinkedin size={24} />} />
-                    <SocialLink href="https://behance.net/" icon={<FaBehance size={24} />} />
-                    <SocialLink href="https://instagram.com/" icon={<FaInstagram size={24} />} />
-                    <SocialLink href="https://facebook.com/" icon={<FaFacebook size={24} />} />
-                    <SocialLink href="https://wa.me/94712345678" icon={<FaWhatsapp size={24} />} />
+                    <SocialLink href="https://www.behance.net/lakshanekanayaka" icon={<FaBehance size={24} />} />
+                    <SocialLink href="https://www.instagram.com/lakshan_lk_" icon={<FaInstagram size={24} />} />
+                    <SocialLink href="https://www.facebook.com/lakshan.ekanayaka.12" icon={<FaFacebook size={24} />} />
+                    <SocialLink href="https://wa.me/94767919361" icon={<FaWhatsapp size={24} />} />
                 </motion.div>
             </div>
 
@@ -113,9 +113,9 @@ export const Hero = () => {
                     <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-violet-500/20 rounded-full blur-2xl" />
 
                     <div className="relative w-[280px] h-[280px] md:w-[500px] md:h-[500px] rounded-full overflow-hidden border-2 border-slate-800/50 backdrop-blur-sm bg-slate-900">
-                         {/* Replace with your image path */}
+                        {/* Replace with your image path */}
                         <Image
-                            src="/profile.JPG" 
+                            src="/profile.JPG"
                             alt="Lakshan Ekanayaka"
                             fill
                             className="object-cover"

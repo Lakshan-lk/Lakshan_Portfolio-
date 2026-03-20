@@ -11,10 +11,10 @@ export const Contact = () => {
     const SOCIAL_LINKS = [
         { name: "GitHub", icon: FaGithub, url: "https://github.com/ekanayaka" },
         { name: "LinkedIn", icon: FaLinkedin, url: "https://linkedin.com/in/lakshan-ekanayaka" },
-        { name: "Behance", icon: FaBehance, url: "https://behance.net/" },
+        { name: "Behance", icon: FaBehance, url: "https://behance.net/lakshanekanayaka" },
         { name: "Whatsapp", icon: FaWhatsapp, url: "https://wa.me/94712345678" },
-        { name: "Instagram", icon: FaInstagram, url: "https://instagram.com/" },
-        { name: "Facebook", icon: FaFacebook, url: "https://facebook.com/" },
+        { name: "Instagram", icon: FaInstagram, url: "https://www.instagram.com/lakshan_lk_" },
+        { name: "Facebook", icon: FaFacebook, url: "https://www.facebook.com/lakshan.ekanayaka.12" },
     ];
 
     const NAV_LINKS = [

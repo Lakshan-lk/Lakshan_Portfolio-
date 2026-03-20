@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Menu, X } from "lucide-react"; // Icons import කරගත්තා
+import { Download, Menu, X } from "lucide-react"; // Icons import කරගත්තා
 
 const navLinks = [
     { name: "Home", href: "#home" },
@@ -84,6 +84,20 @@ export function Navbar() {
                                     </Link>
                                 </motion.li>
                             ))}
+                            {/* Mobile CV Button */}
+                            <motion.li 
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.6 }}
+                            >
+                                <a 
+                                    href="/Lakshan_CV.pdf" 
+                                    download
+                                    className="flex items-center justify-center gap-2 w-full py-3 mt-2 font-bold text-black bg-cyan-400 rounded-xl hover:bg-cyan-300"
+                                >
+                                    Download CV <Download size={18} />
+                                </a>
+                            </motion.li>
                         </ul>
                     </motion.div>
                 )}
