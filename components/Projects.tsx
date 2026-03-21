@@ -24,7 +24,7 @@ const projects: Project[] = [
         category: "Web Projects",
         description: "My personal interactive portfolio website designed and developed from scratch. Features a futuristic dark theme, glassmorphism UI, and smooth animations to showcase my skills as a UI/UX Designer and Frontend Developer.",
         techStack: [{ name: "Next.js", icon: Code2 }, { name: "TypeScript", icon: Layout }],
-        image: "/project-8.png",
+        image: "/project-10.png",
         github: "https://github.com/Lakshan-lk/Lakshan_Portfolio-.git",
         demo: "lakshan-portfolio-ochre.vercel.app"
     },
@@ -34,7 +34,7 @@ const projects: Project[] = [
         category: "UI/UX Design",
         description: " Excited to share our Usability Improvement Project for the Mag City website! This project was completed as part of our Human–Computer Interaction (HCI) module, where we focused on enhancing the overall user experience and interface design of an existing platform.",
         techStack: [{ name: "Figma", icon: Figma }, { name: "Prototyping", icon: Layers }],
-        image: "/project-12.png",
+        image: "/project-20.png",
         github: "https://www.behance.net/gallery/240177833/MagCity-Vehicle-Service-Website-%28UIUX-Design%29",
         demo: "https://www.figma.com/proto/kNxZH97bRLRRTZwfhuiF5K/Project-Magcity?page-id=0%3A1&node-id=614-9695&viewport=-1890%2C6495%2C0.12&t=fi4h8W3MP6Vm3PrJ-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=530%3A2010"
     },
@@ -44,7 +44,7 @@ const projects: Project[] = [
         category: "UI/UX Design",
         description: "This concept focuses on showcasing the beauty of Sri Lanka through a clean, immersive, and visually engaging interface.I explored modern layouts, bold typography, and high-quality imagery to bring Nature, Wildlife, Culture, Airlines and travel experiences together in one smooth user journey.",
         techStack: [{ name: "Figma", icon: Figma }, { name: "Prototyping", icon: Layers }],
-        image: "/project-56.png",
+        image: "/project-30.png",
         github: "https://www.behance.net/gallery/239110627/Sri-Lanka-Tourism-Website-UIUX-Design",
         demo: "https://www.figma.com/proto/EaoLyOfpy9t7kosfolXffe/Web-site?page-id=71%3A19&node-id=75-58&viewport=843%2C678%2C0.1&t=TRlMJv3MFaZdfSfU-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=75%3A58"
     },
@@ -65,7 +65,7 @@ const projects: Project[] = [
         category: "Web Projects",
         description: "We are excited to share after nearly month of continus efforts my team i proudly present , Servio, a full-stack web-based platform revolutionizing automotive service management in Sri Lanka. This comprehensive system connects Vehicle owners, Service centers, Technicians, and Admins in a seamless, User-friendly ecosystem. From booking services to tracking repairs in real-time, Servio streamlines the entire vehicle maintenance process with a modern, responsive design.",
         techStack: [{ name: "Next.js", icon: Code2 }, { name: "Tailwind CSS", icon: Layout }],
-        image: "/project-49.png",
+        image: "/project-50.png",
         github: "https://github.com/Lakshan-lk/Servio---Vehicle-Service-and-Repair-Management-System.git",
         demo: "https://github.com/Lakshan-lk/Servio---Vehicle-Service-and-Repair-Management-System.git"
     },
@@ -260,38 +260,44 @@ export const Projects = () => {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
-                        className="mt-16 flex flex-col items-center justify-center gap-4"
+                        className="mt-16 w-full flex flex-col items-center justify-center"
                     >
-                        <div className="flex items-center gap-4">
+                        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 w-full md:w-auto px-4">
+                            
+                            {/* View All Button */}
                             <button
                                 onClick={handleLoadMore}
-                                className="group relative px-8 py-3 bg-slate-900 text-white font-medium rounded-full overflow-hidden border border-cyan-500/50 hover:border-cyan-400 transition-all shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:shadow-[0_0_30px_rgba(6,182,212,0.3)]"
+                                className="group relative px-8 py-3 bg-slate-900 text-white font-medium rounded-full overflow-hidden border border-cyan-500/50 hover:border-cyan-400 transition-all shadow-[0_0_20px_rgba(6,182,212,0.15)] hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] w-full md:w-auto flex justify-center"
                             >
                                 <div className="absolute inset-0 w-full h-full bg-cyan-500/10 group-hover:bg-cyan-500/20 transition-colors" />
-                                <span className="relative z-10 flex items-center gap-2">
+                                <span className="relative z-10 flex items-center justify-center gap-2">
                                     {isExpanded ? "Show Less" : "View All Projects"}
                                     <ArrowUpRight className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? "rotate-90" : "group-hover:-translate-y-1 group-hover:translate-x-1"}`} />
                                 </span>
                             </button>
 
-                            <a
-                                href="https://github.com/Lakshan-lk"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-6 py-3 text-gray-400 hover:text-white transition-colors group"
-                            >
-                                <Github className="w-5 h-5 group-hover:text-purple-400 transition-colors" />
-                                <span>Explore more on GitHub</span>
-                            </a>
-                            <a
-                                href="https://www.behance.net/lakshanekanayaka"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center gap-2 px-6 py-3 text-gray-400 hover:text-white transition-colors group"
-                            >
-                                <FaBehance className="w-5 h-5 group-hover:text-purple-400 transition-colors" />
-                                <span>Explore more on Behance</span>
-                            </a>
+                            {/* Social Links */}
+                            <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+                                <a
+                                    href="https://github.com/Lakshan-lk"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center gap-2 px-6 py-3 text-gray-400 hover:text-white transition-colors group bg-white/5 md:bg-transparent rounded-full w-full sm:w-auto border border-white/5 md:border-none"
+                                >
+                                    <Github className="w-5 h-5 group-hover:text-purple-400 transition-colors" />
+                                    <span className="text-sm whitespace-nowrap">Explore on GitHub</span>
+                                </a>
+                                <a
+                                    href="https://www.behance.net/lakshanekanayaka"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center gap-2 px-6 py-3 text-gray-400 hover:text-white transition-colors group bg-white/5 md:bg-transparent rounded-full w-full sm:w-auto border border-white/5 md:border-none"
+                                >
+                                    <FaBehance className="w-5 h-5 group-hover:text-purple-400 transition-colors" />
+                                    <span className="text-sm whitespace-nowrap">Explore on Behance</span>
+                                </a>
+                            </div>
+                            
                         </div>
                     </motion.div>
                 )}
