@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Github, Code2, Figma, Smartphone, Globe, Layers, Layout, LayoutDashboard } from "lucide-react";
+import { FaBehance } from "react-icons/fa";
 import Image from "next/image";
 
 interface Project {
@@ -19,70 +20,151 @@ interface Project {
 const projects: Project[] = [
     {
         id: 1,
-        title: "Chandula Nanayakkara",
+        title: "Lakshan Portfolio",
         category: "Web Projects",
-        description: "A high-performance personal branding site built for a client. Features a custom dark theme and seamless animations. A high-performance personal branding site built for a client. Features a custom dark theme and seamless animations.",
-        techStack: [{ name: "Next.js", icon: Code2 }, { name: "Tailwind", icon: Layout }],
-        image: "/project-1.jpg",
-        github: "#",
-        demo: "#"
+        description: "My personal interactive portfolio website designed and developed from scratch. Features a futuristic dark theme, glassmorphism UI, and smooth animations to showcase my skills as a UI/UX Designer and Frontend Developer.",
+        techStack: [{ name: "Next.js", icon: Code2 }, { name: "TypeScript", icon: Layout }],
+        image: "/project-8.png",
+        github: "https://github.com/Lakshan-lk/Lakshan_Portfolio-.git",
+        demo: "lakshan-portfolio-ochre.vercel.app"
     },
     {
         id: 2,
-        title: "HCI Module Redesign",
+        title: "Mag City Website Redesign",
         category: "UI/UX Design",
-        description: "A complete usability study and redesign of a legacy interface to improve user experience. A complete usability study and redesign of a legacy interface to improve user experience.",
+        description: " Excited to share our Usability Improvement Project for the Mag City website! This project was completed as part of our Human–Computer Interaction (HCI) module, where we focused on enhancing the overall user experience and interface design of an existing platform.",
         techStack: [{ name: "Figma", icon: Figma }, { name: "Prototyping", icon: Layers }],
-        image: "/project-2.png",
+        image: "/project-12.png",
+        github: "https://www.behance.net/gallery/240177833/MagCity-Vehicle-Service-Website-%28UIUX-Design%29",
+        demo: "https://www.figma.com/proto/kNxZH97bRLRRTZwfhuiF5K/Project-Magcity?page-id=0%3A1&node-id=614-9695&viewport=-1890%2C6495%2C0.12&t=fi4h8W3MP6Vm3PrJ-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=530%3A2010"
     },
     {
         id: 3,
-        title: "Travel App",
-        category: "Mobile Projects",
-        description: "A cross-platform mobile application for travel planning and booking.",
-        techStack: [{ name: "Kotlin", icon: Smartphone }, { name: "Expo", icon: Code2 }],
-        image: "/project-3.png",
+        title: "Sri Lanka Tourism Website",
+        category: "UI/UX Design",
+        description: "This concept focuses on showcasing the beauty of Sri Lanka through a clean, immersive, and visually engaging interface.I explored modern layouts, bold typography, and high-quality imagery to bring Nature, Wildlife, Culture, Airlines and travel experiences together in one smooth user journey.",
+        techStack: [{ name: "Figma", icon: Figma }, { name: "Prototyping", icon: Layers }],
+        image: "/project-56.png",
+        github: "https://www.behance.net/gallery/239110627/Sri-Lanka-Tourism-Website-UIUX-Design",
+        demo: "https://www.figma.com/proto/EaoLyOfpy9t7kosfolXffe/Web-site?page-id=71%3A19&node-id=75-58&viewport=843%2C678%2C0.1&t=TRlMJv3MFaZdfSfU-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=75%3A58"
     },
     {
         id: 4,
-        title: "Agency Landing Page",
-        category: "Web Projects",
-        description: "A visually rich landing page featuring complex GSAP animations and 3D elements.",
-        techStack: [{ name: "GSAP", icon: Code2 }, { name: "React", icon: Globe }],
-        image: "/project-4.png",
+        title: "Tasty Food - Food Restaurant",
+        category: "UI/UX Design",
+        description: "This Individual project is a modern restaurant and food ordering website design that delivers a clean, attractive, and user-friendly experience. The design focuses on showcasing food menus beautifully while making it simple for customers to browse, order, and connect.",
+        techStack: [{ name: "Figma", icon: Figma }, { name: "Prototyping", icon: Layers }],
+        image: "/project-40.png",
+        github: "https://www.behance.net/gallery/235727011/Tasty-Food-Food-Restaurant-Website-Design-",
+        demo: "https://www.figma.com/proto/EaoLyOfpy9t7kosfolXffe/Web-site?page-id=13%3A3&node-id=47-409&viewport=747%2C829%2C0.1&t=v1A9YTIrOD98JgZs-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=47%3A409"
+
     },
     {
         id: 5,
-        title: "E-commerce Dashboard",
+        title: "Servio - Vehicle Service and Repair Management System",
         category: "Web Projects",
-        description: "A comprehensive dashboard for managing products, orders, and analytics.",
-        techStack: [{ name: "React", icon: Code2 }, { name: "Charts", icon: LayoutDashboard }],
-        image: "/project-5.png",
+        description: "We are excited to share after nearly month of continus efforts my team i proudly present , Servio, a full-stack web-based platform revolutionizing automotive service management in Sri Lanka. This comprehensive system connects Vehicle owners, Service centers, Technicians, and Admins in a seamless, User-friendly ecosystem. From booking services to tracking repairs in real-time, Servio streamlines the entire vehicle maintenance process with a modern, responsive design.",
+        techStack: [{ name: "Next.js", icon: Code2 }, { name: "Tailwind CSS", icon: Layout }],
+        image: "/project-49.png",
+        github: "https://github.com/Lakshan-lk/Servio---Vehicle-Service-and-Repair-Management-System.git",
+        demo: "https://github.com/Lakshan-lk/Servio---Vehicle-Service-and-Repair-Management-System.git"
     },
     {
         id: 6,
-        title: "Food Delivery App",
+        title: "Stay Easy House Booking App",
         category: "Mobile Projects",
-        description: "High-fidelity prototype for a food delivery service with micro-interactions.",
-        techStack: [{ name: "Figma", icon: Figma }, { name: "Protopie", icon: Smartphone }],
-        image: "/project-6.png",
+        description: "Stay Easy is a mobile application that simplifies the process of finding and booking houses for rent. Designed with a clean and responsive UI using Android Studio and XML, it offers an intuitive user experience for both renters and property owners.",
+        techStack: [{ name: "Kotlin", icon: Smartphone }, { name: "Expo", icon: Code2 }],
+        image: "/project-60.png",
+        github: "https://github.com/Lakshan-lk/HouseBookingApp.git",
+        demo: "https://github.com/Lakshan-lk/HouseBookingApp.git"
     },
     {
         id: 7,
-        title: "Portfolio v1",
-        category: "Web Projects",
-        description: "My first portfolio website built with React and Styled Components.",
-        techStack: [{ name: "React", icon: Code2 }, { name: "CSS", icon: Layers }],
-        image: "/project-7.jpg",
+        title: "Spend Wise – Personal Finance Tracker",
+        category: "Mobile Projects",
+        description: "Spend Wise is a Kotlin-based personal finance tracking app built with Android Studio. It helps users manage daily expenses, set monthly budgets, and analyze spending habits effectively - all while storing data securely on the device.",
+        techStack: [{ name: "Kotlin", icon: Smartphone }, { name: "Expo", icon: Code2 }],
+        image: "/project-70.png",
+        github: "https://github.com/Lakshan-lk/SpendWise.git",
+        demo: "https://github.com/Lakshan-lk/SpendWise.git"
     },
     {
         id: 8,
-        title: "Task Manager",
-        category: "Mobile Projects",
-        description: "A productivity app focusing on simple task management and daily planning.",
-        techStack: [{ name: "Flutter", icon: Smartphone }, { name: "Dart", icon: Code2 }],
-        image: "/project-8.jpg",
-    }
+        title: "Belleza - Fashion Store",
+        category: "Web Projects",
+        description: "Belleza is a modern and fully functional Fashion Store Website developed as part of my IWT assignment. The platform delivers a sleek, responsive shopping experience for users and includes a robust Admin Panel for backend management.",
+        techStack: [{ name: "HTML", icon: Code2 }, { name: "CSS", icon: Layout }],
+        image: "/project-800.png",
+        github: "https://github.com/Lakshan-lk/Fashion-Store.git",
+        demo: "https://github.com/Lakshan-lk/Fashion-Store.git"
+    },
+    {
+        id: 9,
+        title: "NoodleNest – Food Restaurant",
+        category: "UI/UX Design",
+        description: "Excited to share my latest UI/UX design project - Noodle Nest, a modern food restaurant website that blends delicious visuals with a clean and engaging interface.Designed to make online ordering simple and delightful, focusing on visual hierarchy, color balance, and easy navigation.I explored layout systems, typography, and responsive elements to ensure a smooth user experience across all devices.",
+        techStack: [{ name: "Figma", icon: Figma }, { name: "Prototyping", icon: Layers }],
+        image: "/project-9.png",
+        github: "https://www.behance.net/gallery/236668095/NoodleNest-Food-Restaurant-Website-UIUX-Design",
+        demo: "https://www.figma.com/proto/EaoLyOfpy9t7kosfolXffe/Web-site?page-id=0%3A1&node-id=8-204&viewport=-1109%2C-193%2C0.22&t=hd0yyfgB9P1aU4dU-1&scaling=min-zoom&content-scaling=fixed"
+
+    },
+    {
+        id: 10,
+        title: "BMW M420 Website UI/UX Design",
+        category: "UI/UX Design",
+        description: "Excited to share my latest UI/UX concept - a modern and bold interface for the BMW M420.This design focuses on:Clean typography & strong visual hierarchy,Car color customization interaction,Minimal layout with high-contrast branding",
+        techStack: [{ name: "Figma", icon: Figma }, { name: "Prototyping", icon: Layers }],
+        image: "/project-100.png",
+        github: "https://www.behance.net/gallery/240621473/BMW-M420-Automotive-Website-UIUX-Concept-Design",
+        demo: "https://www.figma.com/proto/EaoLyOfpy9t7kosfolXffe/Web-site?page-id=0%3A1&node-id=8-204&viewport=-1109%2C-193%2C0.22&t=hd0yyfgB9P1aU4dU-1&scaling=min-zoom&content-scaling=fixed"
+
+    },
+    {
+        id: 11,
+        title: "Fruity Website Concept UI/UX Design",
+        category: "UI/UX Design",
+        description: "Excited to share my latest UI/UX exploration a modern, minimal, product focused landing experience for a fruity beverages brand 🍒 Cherry | 🍐 Pear | 🍋 Lemon | 🍎 Apple | 🍊 Quince | 🥝 Exotic Mix",
+        techStack: [{ name: "Figma", icon: Figma }, { name: "Prototyping", icon: Layers }],
+        image: "/project-110.png",
+        github: "https://www.behance.net/gallery/241215065/Fruity-Website-Concept-UIUX-Design",
+        demo: "https://www.figma.com/proto/g26wu9g75iY1ZTnXcUO1gV/UI-UX-Page?page-id=0%3A1&node-id=7-1149&viewport=526%2C292%2C0.1&t=11BlXNVz3bQUfYz0-1&scaling=min-zoom&content-scaling=fixed"
+
+    },
+    {
+        id: 12,
+        title: "Fruity Animation Website UI/UX Design",
+        category: "UI/UX Design",
+        description: "Excited to share my latest UI/UX concept — Fruity Cider Landing Page.Fruity is a concept landing page designed for a healthy fruit-based drink brand. The main objective was to create a fresh, natural, and inviting digital experience that builds trust and encourages users to order.",
+        techStack: [{ name: "Figma", icon: Figma }, { name: "Prototyping", icon: Layers }],
+        image: "/project-120.png",
+        github: "https://www.behance.net/gallery/245445469/Fruity-Animation-Website-UIUX-Design",
+        demo: "https://www.figma.com/proto/g26wu9g75iY1ZTnXcUO1gV/UI-UX-Page?page-id=65%3A2&node-id=65-5&viewport=156%2C328%2C0.16&t=9YJgcRaP830qgPPe-1&scaling=scale-down&content-scaling=fixed"
+
+    },
+    {
+        id: 13,
+        title: "Planto – Plant Store Website UI/UX Design",
+        category: "UI/UX Design",
+        description: "Excited to share my new UI/UX Design Project – “Planto”, a modern Plant Store Website built to create a calm and nature-inspired online shopping experience. 🌱 The main goal of this project was to design an aesthetic and minimal user interface that blends visual elegance with usability — making it easier for users to explore, choose, and purchase plants effortlessly.",
+        techStack: [{ name: "Figma", icon: Figma }, { name: "Prototyping", icon: Layers }],
+        image: "/project-13.png",
+        github: "https://www.behance.net/gallery/236502037/Planto-Plant-Store-Website-UIUX-Design",
+        demo: "https://www.figma.com/proto/EaoLyOfpy9t7kosfolXffe/Web-site?page-id=59%3A56&node-id=89-2&viewport=279%2C208%2C0.12&t=p6KrHzLmf953rv8o-1&scaling=min-zoom&content-scaling=fixed"
+
+    },
+    {
+        id: 14,
+        title: "Fruity Beverage Concept UI/UX Design",
+        category: "UI/UX Design",
+        description: "Excited to share my latest UI/UX concept — Fruity Cider Landing Page.Fruity is a concept landing page designed for a healthy fruit-based drink brand. The main objective was to create a fresh, natural, and inviting digital experience that builds trust and encourages users to order.",
+        techStack: [{ name: "Figma", icon: Figma }, { name: "Prototyping", icon: Layers }],
+        image: "/project-14.png",
+        github: "https://www.behance.net/gallery/245533175/UIUX-Mobile-Design-Project-Fruity-Beverage-Concept",
+        demo: "https://www.figma.com/proto/g26wu9g75iY1ZTnXcUO1gV/UI-UX-Page?page-id=96%3A423&node-id=96-3404&viewport=291%2C209%2C0.1&t=SK4ZZXLDLJMEeeOd-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=96%3A3404"
+
+    },
 ];
 
 const allCategories = ["All", "UI/UX Design", "Web Projects", "Mobile Projects"];
@@ -193,13 +275,22 @@ export const Projects = () => {
                             </button>
 
                             <a
-                                href="https://github.com/yourusername"
+                                href="https://github.com/Lakshan-lk"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-2 px-6 py-3 text-gray-400 hover:text-white transition-colors group"
                             >
                                 <Github className="w-5 h-5 group-hover:text-purple-400 transition-colors" />
                                 <span>Explore more on GitHub</span>
+                            </a>
+                            <a
+                                href="https://www.behance.net/lakshanekanayaka"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-2 px-6 py-3 text-gray-400 hover:text-white transition-colors group"
+                            >
+                                <FaBehance className="w-5 h-5 group-hover:text-purple-400 transition-colors" />
+                                <span>Explore more on Behance</span>
                             </a>
                         </div>
                     </motion.div>
