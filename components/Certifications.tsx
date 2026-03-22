@@ -2,17 +2,15 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Calendar, ChevronDown, ChevronUp } from "lucide-react";
-import { FcGoogle } from "react-icons/fc"; 
-import { FaMeta, FaHackerrank, FaAws, FaMicrosoft } from "react-icons/fa6"; // Added AWS & Microsoft
-import { SiCisco } from "react-icons/si"; 
+import { ExternalLink, Calendar, ChevronDown, ChevronUp, Award, BookOpen, GraduationCap, ShieldCheck } from "lucide-react";
 
 interface Certification {
     id: number;
     title: string;
     org: string;
     date: string;
-    icon: React.ReactNode;
+    logo: string;
+    credentialID: string;
     link: string;
     color: string;
     borderColor: string;
@@ -22,72 +20,88 @@ interface Certification {
 const certifications: Certification[] = [
     {
         id: 1,
-        title: "Google UX Design Professional Certificate",
-        org: "Coursera / Google",
-        date: "Issued Dec 2025",
-        icon: <FcGoogle className="w-16 h-16" />,
-        link: "#",
-        color: "bg-blue-500/10",
-        borderColor: "group-hover:border-blue-500/50"
+        title: "Introduction to Web Development with ChatGPT",
+        org: "Simplilearn",
+        date: "Issued July 2025",
+        logo: "/Simp.png",
+        credentialID: "",
+        link: "https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiI0MjYwIiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvODYwODA5NF84OTgwMjE3MTc1MjIxODA5MDI2Mi5wbmciLCJ1c2VybmFtZSI6Ikxha3NoYW4gRWthbmF5YWthICJ9&referrer=https%3A%2F%2Flms.simplilearn.com%2Fcourses%2F7228%2FIntroduction-to-Web-Development-with-ChatGPT%2Fcertificate%2Fdownload-skillup&%24web_only=true",
+        color: "bg-gray-500/10",
+        borderColor: "group-hover:border-gray-500/50"
     },
     {
         id: 2,
-        title: "Meta Frontend Developer Professional Certificate",
-        org: "Coursera / Meta",
-        date: "Issued Nov 2025",
-        icon: <FaMeta className="w-14 h-14 text-blue-500" />,
-        link: "#",
-        color: "bg-cyan-500/10",
-        borderColor: "group-hover:border-cyan-500/50"
+        title: "Introduction to Figma",
+        org: "Simplilearn",
+        date: "Issued July 2025",
+        logo: "/Simp.png",
+        credentialID: "",
+        link: "https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiI0MzcyIiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvODY2NjU1MV84OTgwMjE3MTc1MzE3Mzk0Mzk4Mi5wbmciLCJ1c2VybmFtZSI6Ikxha3NoYW4gRWthbmF5YWthICJ9&referrer=https%3A%2F%2Flms.simplilearn.com%2Fcourses%2F7320%2FIntroduction-to-Figma-course%2Fcertificate%2Fdownload-skillup&%24web_only=true",
+        color: "bg-gray-500/10",
+        borderColor: "group-hover:border-gray-500/50"
     },
     {
         id: 3,
-        title: "React (Basic) Skills Certification",
-        org: "HackerRank",
-        date: "Issued Oct 2025",
-        icon: <FaHackerrank className="w-14 h-14 text-green-500" />,
-        link: "#",
-        color: "bg-green-500/10",
-        borderColor: "group-hover:border-green-500/50"
+        title: "Python For Beginners",
+        org: "University of Moratuwa",
+        date: "Issued May 2025",
+        logo: "/uom.png",
+        credentialID: "7Wf2MWI1MH",
+        link: "https://open.uom.lk/lms/mod/customcert/verify_certificate.php",
+        color: "bg-white",
+        borderColor: "group-hover:border-white/50"
     },
     {
         id: 4,
-        title: "Introduction to Cybersecurity",
-        org: "Cisco Networking Academy",
-        date: "Issued Sep 2025",
-        icon: <SiCisco className="w-14 h-14 text-sky-500" />,
-        link: "#",
-        color: "bg-purple-500/10",
-        borderColor: "group-hover:border-purple-500/50"
+        title: "Python Programming",
+        org: "University of Moratuwa",
+        date: "Issued June 2025",
+        logo: "/uom.png",
+        credentialID: "f2MgXBUXU2",
+        link: "https://open.uom.lk/lms/mod/customcert/verify_certificate.php",
+        color: "bg-white",
+        borderColor: "group-hover:border-white/50"
     },
-    // --- Extra Certifications (Hidden initially) ---
     {
         id: 5,
-        title: "AWS Cloud Practitioner Essentials",
-        org: "Amazon Web Services",
-        date: "Issued Aug 2025",
-        icon: <FaAws className="w-14 h-14 text-orange-500" />,
-        link: "#",
-        color: "bg-orange-500/10",
-        borderColor: "group-hover:border-orange-500/50"
+        title: "Web Design for Beginners",
+        org: "University of Moratuwa",
+        date: "Issued July 2025",
+        logo: "/uom.png",
+        credentialID: "SoCcwlQPyo",
+        link: "https://open.uom.lk/lms/mod/customcert/verify_certificate.php",
+        color: "bg-white",
+        borderColor: "group-hover:border-white/50"
     },
     {
         id: 6,
-        title: "Microsoft Azure Fundamentals (AZ-900)",
-        org: "Microsoft",
-        date: "Issued Jul 2025",
-        icon: <FaMicrosoft className="w-14 h-14 text-blue-400" />,
-        link: "#",
-        color: "bg-blue-600/10",
-        borderColor: "group-hover:border-blue-600/50"
+        title: "AI/ML Engineer - Stage 1",
+        org: "SLIIT",
+        date: "Issued July 2025",
+        logo: "/sliit.png",
+        credentialID: "ueqkdtqtuk",
+        link: "https://code.sliit.org/certificates/ueqkdtqtuk",
+        color: "bg-white",
+        borderColor: "group-hover:border-white/50"
+    },
+    {
+        id: 7,
+        title: "AI/ML Engineer - Stage 2",
+        org: "SLIIT",
+        date: "Issued August 2025",
+        logo: "/sliit.png",
+        credentialID: "8l9zqe20oo",
+        link: "https://code.sliit.org/certificates/8l9zqe20oo",
+        color: "bg-white",
+        borderColor: "group-hover:border-white/50"
     }
 ];
 
 export const Certifications = () => {
     const [showAll, setShowAll] = useState(false);
 
-    // Show first 4 initially, or all if showAll is true
-    const visibleCertifications = showAll ? certifications : certifications.slice(0, 4);
+    const reversedCertifications = [...certifications].reverse();
+    const visibleCertifications = showAll ? reversedCertifications : reversedCertifications.slice(0, 4);
 
     return (
         <section id="certifications" className="relative py-24 px-6 md:px-12 bg-transparent">
@@ -154,7 +168,11 @@ const CertificationCard = ({ cert, index }: { cert: Certification; index: number
         >
             {/* Logo Placeholder (Left Side) */}
             <div className={`w-full sm:w-32 h-32 shrink-0 rounded-xl ${cert.color} border border-white/5 flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform duration-500`}>
-                {cert.icon}
+                <img
+                    src={cert.logo}
+                    alt={`${cert.org} logo`}
+                    className="w-full h-full object-contain filter drop-shadow-md"
+                />
             </div>
 
             {/* Content (Right Side) */}
@@ -164,9 +182,19 @@ const CertificationCard = ({ cert, index }: { cert: Certification; index: number
                         {cert.title}
                     </h3>
                     <p className="text-gray-400 font-medium mb-1 text-sm">{cert.org}</p>
-                    <div className="flex items-center justify-center sm:justify-start gap-2 text-gray-500 text-xs mb-4 font-mono">
-                        <Calendar className="w-3 h-3" />
-                        <span>{cert.date}</span>
+                    
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-center sm:justify-start gap-2 sm:gap-4 text-gray-500 text-xs mb-4 font-mono">
+                        <div className="flex items-center gap-1.5 justify-center sm:justify-start">
+                            <Calendar className="w-3 h-3" />
+                            <span>{cert.date}</span>
+                        </div>
+                        {/* Show Credential ID if it exists */}
+                        {cert.credentialID && (
+                            <div className="flex items-center gap-1.5 justify-center sm:justify-start">
+                                <span className="hidden sm:inline">•</span>
+                                <span>ID: {cert.credentialID}</span>
+                            </div>
+                        )}
                     </div>
                 </div>
 

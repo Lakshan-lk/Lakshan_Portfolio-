@@ -7,7 +7,7 @@ import { About } from "@/components/About";
 import { Projects } from "@/components/Projects";
 import { Services } from "@/components/Services";
 import { Skills } from "@/components/Skills";
-import { Playground } from "@/components/Playground";
+// import { Playground } from "@/components/Playground";
 import { Certifications } from "@/components/Certifications";
 import { Contact } from "@/components/Contact";
 
@@ -21,7 +21,7 @@ export default function Home() {
       <Projects />
       <Services />
       <Skills />
-      <Playground />
+      {/*<Playground />*/}
       <Certifications />
       <Contact />
     </main>
