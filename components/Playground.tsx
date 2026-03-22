@@ -35,7 +35,7 @@ const uiShots: Shot[] = [
         height: "h-96",
         image: "/project-2.png",
         color: "from-cyan-500/20 to-teal-500/20",
-        link: "https://www.behance.net/"
+        link: "https://www.behance.net/" 
     },
     {
         id: 3,
