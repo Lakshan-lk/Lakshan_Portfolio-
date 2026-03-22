@@ -17,33 +17,33 @@ const services: ServiceProps[] = [
     {
         id: 1,
         title: "UI/UX Design",
-        description: "Crafting intuitive, user-centered interfaces that look stunning and solve real problems. I can design the UI/UX for your website or app.UI/UX Design is the process of designing the user interface and user experience of a website or app.",
+        description: "Crafting intuitive, user-centered interfaces that solve real problems. I design wireframes, prototypes, and high-fidelity mockups using Figma to deliver stunning and seamless digital experiences.",
         icon: Layout,
-        tags: ["Wireframing", "Prototyping", "Mobile Apps"],
+        tags: ["Wireframing", "Prototyping", "Web & Mobile Design", "Figma"],
         gradient: "from-purple-500 to-cyan-500"
     },
     {
         id: 2,
         title: "Frontend Development",
-        description: "Building pixel-perfect, high-performance web applications with clean and scalable code. I can design the UI/UX for your website or app.Frontend Development is the process of developing the frontend of a website or app.",
+        description: "Building pixel-perfect, high-performance web applications. I bring designs to life using modern technologies like React, Next.js,TypeScript and Tailwind CSS, focusing on clean, scalable, and responsive code.",
         icon: Code2,
-        tags: ["React", "Next.js", "Tailwind", "Motion"],
+        tags: ["React", "Next.js", "Tailwind","TypeScript", "Motion"],
         gradient: "from-cyan-500 to-blue-500"
     },
     {
         id: 3,
         title: "User Research",
-        description: "Understanding user needs and behaviors to make data-driven design decisions. I can design the UI/UX for your website or app.User Research is the process of understanding user needs and behaviors to make data-driven design decisions.",
+        description: "Understanding user behaviors and needs through research and testing. I use data-driven insights to create user personas and journey maps, ensuring the final product truly resonates with the target audience.",
         icon: Users,
-        tags: ["User Testing", "Personas", "Journeys"],
+        tags: ["User Testing", "Personas", "Journeys", "Research"],
         gradient: "from-blue-500 to-purple-500"
     },
     {
         id: 4,
         title: "Content Creation",
-        description: "Creating engaging digital content and storytelling that connects brands with their audience. I can design the UI/UX for your website or app.Content Creation is the process of creating engaging digital content and storytelling that connects brands with their audience.",
+        description: "Crafting engaging digital content and visual narratives. I help brands communicate their message effectively through compelling storytelling and multimedia design that connects with their audience.",
         icon: Video,
-        tags: ["Video Editing", "Storytelling", "Media"],
+        tags: ["Video Editing", "Storytelling", "Short Videos", "Content Creation"],
         gradient: "from-purple-500 to-pink-500"
     }
 ];

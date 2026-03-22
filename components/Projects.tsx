@@ -20,57 +20,6 @@ interface Project {
 const projects: Project[] = [
     {
         id: 1,
-        title: "Lakshan Portfolio",
-        category: "Web Projects",
-        description: "My personal interactive portfolio website designed and developed from scratch. Features a futuristic dark theme, glassmorphism UI, and smooth animations to showcase my skills as a UI/UX Designer and Frontend Developer.",
-        techStack: [{ name: "Next.js", icon: Code2 }, { name: "TypeScript", icon: Layout }],
-        image: "/project-10.png",
-        github: "https://github.com/Lakshan-lk/Lakshan_Portfolio-.git",
-        demo: "lakshan-portfolio-ochre.vercel.app"
-    },
-    {
-        id: 2,
-        title: "Mag City Website Redesign",
-        category: "UI/UX Design",
-        description: " Excited to share our Usability Improvement Project for the Mag City website! This project was completed as part of our Human–Computer Interaction (HCI) module, where we focused on enhancing the overall user experience and interface design of an existing platform.",
-        techStack: [{ name: "Figma", icon: Figma }, { name: "Prototyping", icon: Layers }],
-        image: "/project-20.png",
-        github: "https://www.behance.net/gallery/240177833/MagCity-Vehicle-Service-Website-%28UIUX-Design%29",
-        demo: "https://www.figma.com/proto/kNxZH97bRLRRTZwfhuiF5K/Project-Magcity?page-id=0%3A1&node-id=614-9695&viewport=-1890%2C6495%2C0.12&t=fi4h8W3MP6Vm3PrJ-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=530%3A2010"
-    },
-    {
-        id: 3,
-        title: "Sri Lanka Tourism Website",
-        category: "UI/UX Design",
-        description: "This concept focuses on showcasing the beauty of Sri Lanka through a clean, immersive, and visually engaging interface.I explored modern layouts, bold typography, and high-quality imagery to bring Nature, Wildlife, Culture, Airlines and travel experiences together in one smooth user journey.",
-        techStack: [{ name: "Figma", icon: Figma }, { name: "Prototyping", icon: Layers }],
-        image: "/project-30.png",
-        github: "https://www.behance.net/gallery/239110627/Sri-Lanka-Tourism-Website-UIUX-Design",
-        demo: "https://www.figma.com/proto/EaoLyOfpy9t7kosfolXffe/Web-site?page-id=71%3A19&node-id=75-58&viewport=843%2C678%2C0.1&t=TRlMJv3MFaZdfSfU-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=75%3A58"
-    },
-    {
-        id: 4,
-        title: "Tasty Food - Food Restaurant",
-        category: "UI/UX Design",
-        description: "This Individual project is a modern restaurant and food ordering website design that delivers a clean, attractive, and user-friendly experience. The design focuses on showcasing food menus beautifully while making it simple for customers to browse, order, and connect.",
-        techStack: [{ name: "Figma", icon: Figma }, { name: "Prototyping", icon: Layers }],
-        image: "/project-40.png",
-        github: "https://www.behance.net/gallery/235727011/Tasty-Food-Food-Restaurant-Website-Design-",
-        demo: "https://www.figma.com/proto/EaoLyOfpy9t7kosfolXffe/Web-site?page-id=13%3A3&node-id=47-409&viewport=747%2C829%2C0.1&t=v1A9YTIrOD98JgZs-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=47%3A409"
-
-    },
-    {
-        id: 5,
-        title: "Servio - Vehicle Service and Repair Management System",
-        category: "Web Projects",
-        description: "We are excited to share after nearly month of continus efforts my team i proudly present , Servio, a full-stack web-based platform revolutionizing automotive service management in Sri Lanka. This comprehensive system connects Vehicle owners, Service centers, Technicians, and Admins in a seamless, User-friendly ecosystem. From booking services to tracking repairs in real-time, Servio streamlines the entire vehicle maintenance process with a modern, responsive design.",
-        techStack: [{ name: "Next.js", icon: Code2 }, { name: "Tailwind CSS", icon: Layout }],
-        image: "/project-50.png",
-        github: "https://github.com/Lakshan-lk/Servio---Vehicle-Service-and-Repair-Management-System.git",
-        demo: "https://github.com/Lakshan-lk/Servio---Vehicle-Service-and-Repair-Management-System.git"
-    },
-    {
-        id: 6,
         title: "Stay Easy House Booking App",
         category: "Mobile Projects",
         description: "Stay Easy is a mobile application that simplifies the process of finding and booking houses for rent. Designed with a clean and responsive UI using Android Studio and XML, it offers an intuitive user experience for both renters and property owners.",
@@ -80,7 +29,7 @@ const projects: Project[] = [
         demo: "https://github.com/Lakshan-lk/HouseBookingApp.git"
     },
     {
-        id: 7,
+        id: 2,
         title: "Spend Wise – Personal Finance Tracker",
         category: "Mobile Projects",
         description: "Spend Wise is a Kotlin-based personal finance tracking app built with Android Studio. It helps users manage daily expenses, set monthly budgets, and analyze spending habits effectively - all while storing data securely on the device.",
@@ -90,7 +39,7 @@ const projects: Project[] = [
         demo: "https://github.com/Lakshan-lk/SpendWise.git"
     },
     {
-        id: 8,
+        id: 3,
         title: "Belleza - Fashion Store",
         category: "Web Projects",
         description: "Belleza is a modern and fully functional Fashion Store Website developed as part of my IWT assignment. The platform delivers a sleek, responsive shopping experience for users and includes a robust Admin Panel for backend management.",
@@ -100,7 +49,17 @@ const projects: Project[] = [
         demo: "https://github.com/Lakshan-lk/Fashion-Store.git"
     },
     {
-        id: 9,
+        id: 4,
+        title: "Servio - Vehicle Service and Repair Management System",
+        category: "Web Projects",
+        description: "We are excited to share after nearly month of continus efforts my team i proudly present , Servio, a full-stack web-based platform revolutionizing automotive service management in Sri Lanka. This comprehensive system connects Vehicle owners, Service centers, Technicians, and Admins in a seamless, User-friendly ecosystem. From booking services to tracking repairs in real-time, Servio streamlines the entire vehicle maintenance process with a modern, responsive design.",
+        techStack: [{ name: "Next.js", icon: Code2 }, { name: "Tailwind CSS", icon: Layout }],
+        image: "/project-50.png",
+        github: "https://github.com/Lakshan-lk/Servio---Vehicle-Service-and-Repair-Management-System.git",
+        demo: "https://github.com/Lakshan-lk/Servio---Vehicle-Service-and-Repair-Management-System.git"
+    },
+    {
+        id: 5,
         title: "NoodleNest – Food Restaurant",
         category: "UI/UX Design",
         description: "Excited to share my latest UI/UX design project - Noodle Nest, a modern food restaurant website that blends delicious visuals with a clean and engaging interface.Designed to make online ordering simple and delightful, focusing on visual hierarchy, color balance, and easy navigation.I explored layout systems, typography, and responsive elements to ensure a smooth user experience across all devices.",
@@ -111,7 +70,7 @@ const projects: Project[] = [
 
     },
     {
-        id: 10,
+        id: 6,
         title: "BMW M420 Website UI/UX Design",
         category: "UI/UX Design",
         description: "Excited to share my latest UI/UX concept - a modern and bold interface for the BMW M420.This design focuses on:Clean typography & strong visual hierarchy,Car color customization interaction,Minimal layout with high-contrast branding",
@@ -122,7 +81,18 @@ const projects: Project[] = [
 
     },
     {
-        id: 11,
+        id: 7,
+        title: "Tasty Food - Food Restaurant",
+        category: "UI/UX Design",
+        description: "This Individual project is a modern restaurant and food ordering website design that delivers a clean, attractive, and user-friendly experience. The design focuses on showcasing food menus beautifully while making it simple for customers to browse, order, and connect.",
+        techStack: [{ name: "Figma", icon: Figma }, { name: "Prototyping", icon: Layers }],
+        image: "/project-40.png",
+        github: "https://www.behance.net/gallery/235727011/Tasty-Food-Food-Restaurant-Website-Design-",
+        demo: "https://www.figma.com/proto/EaoLyOfpy9t7kosfolXffe/Web-site?page-id=13%3A3&node-id=47-409&viewport=747%2C829%2C0.1&t=v1A9YTIrOD98JgZs-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=47%3A409"
+
+    },
+    {
+        id: 8,
         title: "Fruity Website Concept UI/UX Design",
         category: "UI/UX Design",
         description: "Excited to share my latest UI/UX exploration a modern, minimal, product focused landing experience for a fruity beverages brand 🍒 Cherry | 🍐 Pear | 🍋 Lemon | 🍎 Apple | 🍊 Quince | 🥝 Exotic Mix",
@@ -133,7 +103,7 @@ const projects: Project[] = [
 
     },
     {
-        id: 12,
+        id: 9,
         title: "Fruity Animation Website UI/UX Design",
         category: "UI/UX Design",
         description: "Excited to share my latest UI/UX concept — Fruity Cider Landing Page.Fruity is a concept landing page designed for a healthy fruit-based drink brand. The main objective was to create a fresh, natural, and inviting digital experience that builds trust and encourages users to order.",
@@ -144,7 +114,7 @@ const projects: Project[] = [
 
     },
     {
-        id: 13,
+        id: 10,
         title: "Planto – Plant Store Website UI/UX Design",
         category: "UI/UX Design",
         description: "Excited to share my new UI/UX Design Project – “Planto”, a modern Plant Store Website built to create a calm and nature-inspired online shopping experience. 🌱 The main goal of this project was to design an aesthetic and minimal user interface that blends visual elegance with usability — making it easier for users to explore, choose, and purchase plants effortlessly.",
@@ -155,7 +125,7 @@ const projects: Project[] = [
 
     },
     {
-        id: 14,
+        id: 11,
         title: "Fruity Beverage Concept UI/UX Design",
         category: "UI/UX Design",
         description: "Excited to share my latest UI/UX concept — Fruity Cider Landing Page.Fruity is a concept landing page designed for a healthy fruit-based drink brand. The main objective was to create a fresh, natural, and inviting digital experience that builds trust and encourages users to order.",
@@ -164,6 +134,36 @@ const projects: Project[] = [
         github: "https://www.behance.net/gallery/245533175/UIUX-Mobile-Design-Project-Fruity-Beverage-Concept",
         demo: "https://www.figma.com/proto/g26wu9g75iY1ZTnXcUO1gV/UI-UX-Page?page-id=96%3A423&node-id=96-3404&viewport=291%2C209%2C0.1&t=SK4ZZXLDLJMEeeOd-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=96%3A3404"
 
+    },
+    {
+        id: 12,
+        title: "Sri Lanka Tourism Website",
+        category: "UI/UX Design",
+        description: "This concept focuses on showcasing the beauty of Sri Lanka through a clean, immersive, and visually engaging interface.I explored modern layouts, bold typography, and high-quality imagery to bring Nature, Wildlife, Culture, Airlines and travel experiences together in one smooth user journey.",
+        techStack: [{ name: "Figma", icon: Figma }, { name: "Prototyping", icon: Layers }],
+        image: "/project-30.png",
+        github: "https://www.behance.net/gallery/239110627/Sri-Lanka-Tourism-Website-UIUX-Design",
+        demo: "https://www.figma.com/proto/EaoLyOfpy9t7kosfolXffe/Web-site?page-id=71%3A19&node-id=75-58&viewport=843%2C678%2C0.1&t=TRlMJv3MFaZdfSfU-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=75%3A58"
+    },
+    {
+        id: 12,
+        title: "Mag City Website Redesign",
+        category: "UI/UX Design",
+        description: " Excited to share our Usability Improvement Project for the Mag City website! This project was completed as part of our Human–Computer Interaction (HCI) module, where we focused on enhancing the overall user experience and interface design of an existing platform.",
+        techStack: [{ name: "Figma", icon: Figma }, { name: "Prototyping", icon: Layers }],
+        image: "/project-20.png",
+        github: "https://www.behance.net/gallery/240177833/MagCity-Vehicle-Service-Website-%28UIUX-Design%29",
+        demo: "https://www.figma.com/proto/kNxZH97bRLRRTZwfhuiF5K/Project-Magcity?page-id=0%3A1&node-id=614-9695&viewport=-1890%2C6495%2C0.12&t=fi4h8W3MP6Vm3PrJ-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=530%3A2010"
+    },
+    {
+        id: 13,
+        title: "Lakshan Portfolio",
+        category: "Web Projects",
+        description: "My personal interactive portfolio website designed and developed from scratch. Features a futuristic dark theme, glassmorphism UI, and smooth animations to showcase my skills as a UI/UX Designer and Frontend Developer.",
+        techStack: [{ name: "Next.js", icon: Code2 }, { name: "TypeScript", icon: Layout }],
+        image: "/project-10.png",
+        github: "https://github.com/Lakshan-lk/Lakshan_Portfolio-.git",
+        demo: "lakshan-portfolio-ochre.vercel.app"
     },
 ];
 
@@ -174,9 +174,11 @@ export const Projects = () => {
     const [visibleCount, setVisibleCount] = useState(6);
     const [isExpanded, setIsExpanded] = useState(false);
 
+    const reversedProjects = [...projects].reverse();
+
     const filteredProjects = activeCategory === "All"
-        ? projects
-        : projects.filter(p => p.category === activeCategory);
+        ? reversedProjects
+        : reversedProjects.filter(p => p.category === activeCategory);
 
     const displayedProjects = activeCategory === "All"
         ? filteredProjects.slice(0, visibleCount)

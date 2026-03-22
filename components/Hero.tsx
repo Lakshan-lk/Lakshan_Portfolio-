@@ -9,7 +9,7 @@ import { FaGithub, FaLinkedin, FaBehance, FaFacebook, FaInstagram, FaWhatsapp } 
 
 export const Hero = () => {
     return (
-        <section className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 overflow-hidden md:flex-row md:justify-between md:px-20 pt-25 md:pt-0">
+        <section className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 overflow-hidden md:flex-row md:justify-between md:px-20 pt-30 md:pt-0">
             {/* Text Content */}
             <div className="flex flex-col items-center text-center md:items-start md:text-left md:w-1/2">
                 <motion.div
