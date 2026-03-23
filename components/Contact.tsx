@@ -2,17 +2,17 @@
 
 import React from "react";
 import { motion, Variants } from "framer-motion";
-import { Mail, ArrowUpRight, MapPin, ArrowUp } from "lucide-react";
+import { Mail, ArrowUpRight, MapPin, ArrowUp, Phone } from "lucide-react"; // Phone icon added here
 import { FaGithub, FaLinkedin, FaBehance, FaTwitter, FaInstagram, FaFacebook, FaWhatsapp } from "react-icons/fa";
 
 export const Contact = () => {
 
     // --- Configuration ---
     const SOCIAL_LINKS = [
-        { name: "GitHub", icon: FaGithub, url: "https://github.com/ekanayaka" },
+        { name: "GitHub", icon: FaGithub, url: "https://github.com/Lakshan-lk" },
         { name: "LinkedIn", icon: FaLinkedin, url: "https://linkedin.com/in/lakshan-ekanayaka" },
         { name: "Behance", icon: FaBehance, url: "https://behance.net/lakshanekanayaka" },
-        { name: "Whatsapp", icon: FaWhatsapp, url: "https://wa.me/94712345678" },
+        { name: "Whatsapp", icon: FaWhatsapp, url: "https://wa.me/94767919361" },
         { name: "Instagram", icon: FaInstagram, url: "https://www.instagram.com/lakshan_lk_" },
         { name: "Facebook", icon: FaFacebook, url: "https://www.facebook.com/lakshan.ekanayaka.12" },
     ];
@@ -108,20 +108,49 @@ export const Contact = () => {
                                     <ArrowUpRight className="w-5 h-5 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
                                 </motion.a>
 
-                                {/* Contact Details Row */}
-                                <div className="mt-10 pt-10 border-t border-white/10 w-full flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 text-slate-400 text-sm md:text-base">
+                                {/* Contact Details Row - UPDATED */}
+                                <div className="mt-10 pt-10 border-t border-white/10 w-full flex flex-wrap items-center justify-center gap-6 md:gap-8 text-slate-400 text-sm md:text-base">
+                                    
+                                    {/* Location */}
                                     <div className="flex items-center gap-2">
                                         <div className="p-2 rounded-full bg-white/5 border border-white/10">
                                             <MapPin className="w-4 h-4 text-cyan-400" />
                                         </div>
-                                        <span>Colombo, Sri Lanka</span>
+                                        <a className="hover:text-white transition-colors">
+                                            <span>Kandy, Sri Lanka</span>
+                                        </a>
                                     </div>
+
+                                    {/* Phone Number */}
+                                    <div className="flex items-center gap-2">   
+                                        <div className="p-2 rounded-full bg-white/5 border border-white/10">
+                                            <Phone className="w-4 h-4 text-green-400" />
+                                        </div>
+                                        <a href="tel:+94767919361" className="hover:text-white transition-colors">
+                                            +94 76 791 9361
+                                        </a>
+                                    </div>
+
+                                    {/* Email */}
                                     <div className="flex items-center gap-2">
                                         <div className="p-2 rounded-full bg-white/5 border border-white/10">
                                             <Mail className="w-4 h-4 text-purple-400" />
                                         </div>
-                                        <span className="font-mono">ekanayakalakshan211@gmail.com</span>
+                                        <a href="mailto:[ekanayakalakshan211@gmail.com]" className="hover:text-white transition-colors">
+                                            <span className="font-mono">ekanayakalakshan211@gmail.com</span>
+                                        </a>
                                     </div>
+
+                                    {/* LinkedIn */}
+                                    <div className="flex items-center gap-2">
+                                        <div className="p-2 rounded-full bg-white/5 border border-white/10">
+                                            <FaLinkedin className="w-4 h-4 text-blue-400" />
+                                        </div>
+                                        <a href="https://linkedin.com/in/lakshan-ekanayaka" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                                            Connect on LinkedIn
+                                        </a>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
