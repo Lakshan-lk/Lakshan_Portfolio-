@@ -81,7 +81,7 @@ export const Services = () => {
 };
 
 // --- TILT CARD LOGIC ---
-const ROTATION_RANGE = 20; // Maximum rotation in degrees
+const ROTATION_RANGE = 15; // Lower maximum rotation in degrees for a subtler effect
 const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
 
 const TiltCard = ({ service, index }: { service: ServiceProps; index: number }) => {
@@ -90,8 +90,10 @@ const TiltCard = ({ service, index }: { service: ServiceProps; index: number }) 
     const x = useMotionValue(0);
     const y = useMotionValue(0);
 
-    const xSpring = useSpring(x);
-    const ySpring = useSpring(y);
+    // Add stiffness and damping to make the spring effect smoother and more professional
+    const springConfig = { stiffness: 300, damping: 40 };
+    const xSpring = useSpring(x, springConfig);
+    const ySpring = useSpring(y, springConfig);
 
     const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
 

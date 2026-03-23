@@ -163,7 +163,7 @@ const projects: Project[] = [
         techStack: [{ name: "Next.js", icon: Code2 }, { name: "TypeScript", icon: Layout }],
         image: "/project-10.png",
         github: "https://github.com/Lakshan-lk/Lakshan_Portfolio-.git",
-        demo: "lakshan-portfolio-ochre.vercel.app"
+        demo: "https://lakshan-ekanayaka.vercel.app/#home"
     },
 ];
 
@@ -178,7 +178,7 @@ export const Projects = () => {
 
     const filteredProjects = activeCategory === "All"
         ? reversedProjects
-        : reversedProjects.filter(p => p.category === activeCategory);
+        : reversedProjects.filter(p => p.category.trim().toLowerCase() === activeCategory.trim().toLowerCase());
 
     const displayedProjects = activeCategory === "All"
         ? filteredProjects.slice(0, visibleCount)
@@ -245,16 +245,20 @@ export const Projects = () => {
                 </div>
 
                 {/* Projects Grid */}
-                <motion.div
-                    layout
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                >
-                    <AnimatePresence mode='popLayout'>
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={`${activeCategory}-${visibleCount}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3 }}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    >
                         {displayedProjects.map((project) => (
-                            <ProjectCard key={project.id} project={project} />
+                            <ProjectCard key={`${activeCategory}-${project.id}`} project={project} />
                         ))}
-                    </AnimatePresence>
-                </motion.div>
+                    </motion.div>
+                </AnimatePresence>
 
                 {/* View All / GitHub Actions */}
                 {activeCategory === "All" && (
