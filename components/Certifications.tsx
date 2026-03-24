@@ -25,7 +25,7 @@ const certifications: Certification[] = [
         date: "Issued July 2025",
         logo: "/Simp.png",
         credentialID: "",
-        link: "https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiI0MjYwIiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvODYwODA5NF84OTgwMjE3MTc1MjIxODA5MDI2Mi5wbmciLCJ1c2VybmFtZSI6Ikxha3NoYW4gRWthbmF5YWthICJ9&referrer=https%3A%2F%2Flms.simplilearn.com%2Fcourses%2F7228%2FIntroduction-to-Web-Development-with-ChatGPT%2Fcertificate%2Fdownload-skillup&%24web_only=true",
+        link: "https://simpli-web.app.link/e/Saxeuam7K1b",
         color: "bg-gray-500/10",
         borderColor: "group-hover:border-gray-500/50"
     },
@@ -36,12 +36,45 @@ const certifications: Certification[] = [
         date: "Issued July 2025",
         logo: "/Simp.png",
         credentialID: "",
-        link: "https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiI0MzcyIiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvODY2NjU1MV84OTgwMjE3MTc1MzE3Mzk0Mzk4Mi5wbmciLCJ1c2VybmFtZSI6Ikxha3NoYW4gRWthbmF5YWthICJ9&referrer=https%3A%2F%2Flms.simplilearn.com%2Fcourses%2F7320%2FIntroduction-to-Figma-course%2Fcertificate%2Fdownload-skillup&%24web_only=true",
+        link: "https://simpli-web.app.link/e/hCfM94q7K1b",
         color: "bg-gray-500/10",
         borderColor: "group-hover:border-gray-500/50"
     },
     {
         id: 3,
+        title: "Introduction to Graphic Design; Basics of UI/UX",
+        org: "Simplilearn",
+        date: "Issued January 2026",
+        logo: "/Simp.png",
+        credentialID: "",
+        link: "https://simpli-web.app.link/e/nNUWyvbVJ1b",
+        color: "bg-gray-500/10",
+        borderColor: "group-hover:border-gray-500/50"
+    },
+    {
+        id: 4,
+        title: "Website UI/UX Designing using ChatGPT : Become a UI UX designer",
+        org: "Simplilearn",
+        date: "Issued January 2026",
+        logo: "/Simp.png",
+        credentialID: "",
+        link: "https://simpli-web.app.link/e/94r8Q92UJ1b",
+        color: "bg-gray-500/10",
+        borderColor: "group-hover:border-gray-500/50"
+    },
+    {
+        id: 5,
+        title: "Design Thinking for Beginners",
+        org: "Simplilearn",
+        date: "Issued January 2026",
+        logo: "/Simp.png",
+        credentialID: "",
+        link: "https://simpli-web.app.link/e/XwCYyK56K1b",
+        color: "bg-gray-500/10",
+        borderColor: "group-hover:border-gray-500/50"
+    },
+    {
+        id: 6,
         title: "Python For Beginners",
         org: "University of Moratuwa",
         date: "Issued May 2025",
@@ -52,7 +85,7 @@ const certifications: Certification[] = [
         borderColor: "group-hover:border-white/50"
     },
     {
-        id: 4,
+        id: 7,
         title: "Python Programming",
         org: "University of Moratuwa",
         date: "Issued June 2025",
@@ -63,7 +96,7 @@ const certifications: Certification[] = [
         borderColor: "group-hover:border-white/50"
     },
     {
-        id: 5,
+        id: 8,
         title: "Web Design for Beginners",
         org: "University of Moratuwa",
         date: "Issued July 2025",
@@ -74,7 +107,7 @@ const certifications: Certification[] = [
         borderColor: "group-hover:border-white/50"
     },
     {
-        id: 6,
+        id: 9,
         title: "AI/ML Engineer - Stage 1",
         org: "SLIIT",
         date: "Issued July 2025",
@@ -85,7 +118,7 @@ const certifications: Certification[] = [
         borderColor: "group-hover:border-white/50"
     },
     {
-        id: 7,
+        id: 10,
         title: "AI/ML Engineer - Stage 2",
         org: "SLIIT",
         date: "Issued August 2025",
