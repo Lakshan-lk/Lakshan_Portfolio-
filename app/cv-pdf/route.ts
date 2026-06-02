@@ -19,7 +19,7 @@ export async function GET() {
     try {
         // 1. Fetch directly from Supabase Storage using the administrative client
         // This avoids HTTP fetch overhead, DNS lookup issues, and public RLS policy restrictions.
-        console.log("Proxying CV directly from Supabase Storage...");
+        console.log("Proxying CV directly from Supabase Storage via /cv-pdf...");
         const { data, error } = await supabaseAdmin.storage
             .from("portfolio-assets")
             .download("cv/cv.pdf");
@@ -56,4 +56,3 @@ export async function GET() {
 
     return new NextResponse("CV file not found.", { status: 404 });
 }
-

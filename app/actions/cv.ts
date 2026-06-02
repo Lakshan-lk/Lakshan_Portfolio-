@@ -48,7 +48,8 @@ export async function uploadCVAction(formData: FormData): Promise<CVUploadResult
             throw new Error(error.message);
         }
 
-        // Revalidate the route to flush cached versions
+        // Revalidate the routes to flush cached versions
+        revalidatePath("/cv-pdf");
         revalidatePath("/Lakshan Ekanayaka.pdf");
 
         return {
