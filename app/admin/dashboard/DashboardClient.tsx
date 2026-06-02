@@ -4,7 +4,7 @@ import React, { useState, useTransition } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
     Inbox, Briefcase, GraduationCap, FileText, LogOut, Plus, Trash2, Edit3,
-    ExternalLink, Menu, X, Check, AlertCircle, Calendar, Mail, User, ShieldAlert,
+    ExternalLink, Menu, X, Check, AlertCircle, Calendar, Mail, User, ShieldAlert, ShieldCheck,
     UploadCloud, PlusCircle, LayoutGrid, Award, BookOpen
 } from "lucide-react";
 import { logoutAdmin } from "@/app/actions/auth";
@@ -424,7 +424,7 @@ export default function DashboardClient({
                     {/* Sidebar Brand */}
                     <div className="flex items-center gap-3 border-b border-white/10 pb-6">
                         <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 border border-cyan-500/30 flex items-center justify-center shadow-lg shadow-cyan-500/10">
-                            <ShieldAlert className="w-5 h-5 text-white" />
+                            <ShieldCheck className="w-5 h-5 text-white" />
                         </div>
                         <div>
                             <h2 className="text-xl font-bold text-white leading-none">CMS Portal</h2>
@@ -448,7 +448,7 @@ export default function DashboardClient({
                         >
                             <div className="flex items-center gap-3 font-semibold text-sm">
                                 <Inbox size={18} />
-                                <span>Client Inbox</span>
+                                <span className="whitespace-nowrap">Client Inbox</span>
                             </div>
                             {unreadCount > 0 && (
                                 <span className="px-2 py-0.5 text-[10px] font-bold bg-cyan-500 text-slate-950 rounded-full animate-pulse">
@@ -470,7 +470,7 @@ export default function DashboardClient({
                             }`}
                         >
                             <LayoutGrid size={18} />
-                            <span>Manage Projects</span>
+                            <span className="whitespace-nowrap">Manage Projects</span>
                         </button>
 
                         {/* Certifications */}
@@ -486,7 +486,7 @@ export default function DashboardClient({
                             }`}
                         >
                             <Award size={18} />
-                            <span>Certifications</span>
+                            <span className="whitespace-nowrap">Certifications</span>
                         </button>
 
                         {/* Journey */}
@@ -502,7 +502,7 @@ export default function DashboardClient({
                             }`}
                         >
                             <GraduationCap size={18} />
-                            <span>My Journey</span>
+                            <span className="whitespace-nowrap">My Journey</span>
                         </button>
 
                         {/* CV Settings */}
@@ -518,7 +518,7 @@ export default function DashboardClient({
                             }`}
                         >
                             <FileText size={18} />
-                            <span>CV & Resume</span>
+                            <span className="whitespace-nowrap">CV & Resume</span>
                         </button>
                     </nav>
                 </div>
@@ -529,7 +529,7 @@ export default function DashboardClient({
                     className="flex items-center justify-center gap-2 w-full py-3 bg-red-500/10 border border-red-500/20 hover:bg-red-500/20 text-red-400 rounded-xl font-bold text-sm transition-all duration-300 cursor-pointer"
                 >
                     <LogOut size={16} />
-                    <span>Log Out securely</span>
+                    <span className="whitespace-nowrap">Log Out securely</span>
                 </button>
             </aside>
 
@@ -673,7 +673,58 @@ export default function DashboardClient({
                                 </div>
                             ) : (
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    {projects.map((p) => (
+                                    {[...projects].sort((a, b) => {
+                                        if (a.created_at && b.created_at) {
+                                            const timeA = new Date(a.created_at).getTime();
+                                            const timeB = new Date(b.created_at).getTime();
+                                            const diff = Math.abs(timeA - timeB);
+                                            if (diff > 60000) {
+                                                return timeB - timeA;
+                                            }
+                                        }
+
+                                        const getFallbackIndex = (p: any) => {
+                                            const clean = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+                                            const fallbackProjects = [
+                                                "Stay Easy House Booking App",
+                                                "Spend Wise – Personal Finance Tracker",
+                                                "Spend Wise - Personal Finance Tracker",
+                                                "Belleza - Fashion Store",
+                                                "Servio - Vehicle Service and Repair Management System",
+                                                "NoodleNest – Food Restaurant",
+                                                "NoodleNest - Food Restaurant",
+                                                "BMW M420 Website UI/UX Design",
+                                                "Tasty Food - Food Restaurant",
+                                                "Fruity Website Concept UI/UX Design",
+                                                "Fruity Animation Website UI/UX Design",
+                                                "Planto – Plant Store Website UI/UX Design",
+                                                "Planto - Plant Store Website UI/UX Design",
+                                                "Fruity Beverage Concept UI/UX Design",
+                                                "Sri Lanka Tourism Website",
+                                                "Mag City Website Redesign",
+                                                "Lakshan Portfolio"
+                                            ];
+                                            return fallbackProjects.findIndex(
+                                                title => clean(p.title) === clean(title) || clean(p.title).includes(clean(title)) || clean(title).includes(clean(p.title))
+                                            );
+                                        };
+
+                                        const idxA = getFallbackIndex(a);
+                                        const idxB = getFallbackIndex(b);
+
+                                        if (idxA !== -1 && idxB !== -1) {
+                                            return idxB - idxA;
+                                        }
+
+                                        if (idxA === -1 && idxB !== -1) return -1;
+                                        if (idxB === -1 && idxA !== -1) return 1;
+
+                                        if (a.created_at && b.created_at) {
+                                            return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+                                        }
+
+                                        return b.id - a.id;
+                                    }).map((p) => (
                                         <div
                                             key={p.id}
                                             className="bg-slate-900/40 border border-white/10 rounded-2xl overflow-hidden flex flex-col justify-between group backdrop-blur-sm"

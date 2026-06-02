@@ -198,6 +198,7 @@ export const Projects = () => {
                         image: p.image,
                         github: p.github || "",
                         demo: p.demo || "",
+                        created_at: p.created_at,
                     }));
                     setProjectList(mappedData);
                 }
@@ -208,11 +209,72 @@ export const Projects = () => {
         fetchProjects();
     }, []);
 
-    const reversedProjects = [...projectList].reverse();
+    // Stable sort: Newest projects first (latest created_at or highest local id first)
+    const sortedProjects = [...projectList].sort((a, b) => {
+        // If both have created_at, let's check if they have a significant difference in time.
+        // Seeded database items share identical or nearly identical created_at timestamps.
+        // If the difference is > 1 minute (60000ms), sort by created_at DESC (newest first).
+        if (a.created_at && b.created_at) {
+            const timeA = new Date(a.created_at).getTime();
+            const timeB = new Date(b.created_at).getTime();
+            const diff = Math.abs(timeA - timeB);
+            
+            if (diff > 60000) {
+                return timeB - timeA;
+            }
+        }
+
+        // Helper to check original seed/fallback index
+        const getFallbackIndex = (p: any) => {
+            const clean = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+            const fallbackProjects = [
+                "Stay Easy House Booking App",
+                "Spend Wise – Personal Finance Tracker",
+                "Spend Wise - Personal Finance Tracker",
+                "Belleza - Fashion Store",
+                "Servio - Vehicle Service and Repair Management System",
+                "NoodleNest – Food Restaurant",
+                "NoodleNest - Food Restaurant",
+                "BMW M420 Website UI/UX Design",
+                "Tasty Food - Food Restaurant",
+                "Fruity Website Concept UI/UX Design",
+                "Fruity Animation Website UI/UX Design",
+                "Planto – Plant Store Website UI/UX Design",
+                "Planto - Plant Store Website UI/UX Design",
+                "Fruity Beverage Concept UI/UX Design",
+                "Sri Lanka Tourism Website",
+                "Mag City Website Redesign",
+                "Lakshan Portfolio"
+            ];
+            return fallbackProjects.findIndex(
+                title => clean(p.title) === clean(title) || clean(p.title).includes(clean(title)) || clean(title).includes(clean(p.title))
+            );
+        };
+
+        const idxA = getFallbackIndex(a);
+        const idxB = getFallbackIndex(b);
+
+        // If both are fallback projects, sort by their original index DESC (so Lakshan Portfolio first, Stay Easy last)
+        if (idxA !== -1 && idxB !== -1) {
+            return idxB - idxA;
+        }
+
+        // If only one is a fallback project, the one that is NOT a fallback project (i.e. a newly added project like BMW) goes first!
+        if (idxA === -1 && idxB !== -1) return -1;
+        if (idxB === -1 && idxA !== -1) return 1;
+
+        // Otherwise (both are new dynamically added projects with similar created_at), sort by created_at DESC
+        if (a.created_at && b.created_at) {
+            return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+        }
+
+        // Ultimate fallback: id descending
+        return b.id - a.id;
+    });
 
     const filteredProjects = activeCategory === "All"
-        ? reversedProjects
-        : reversedProjects.filter(p => p.category.trim().toLowerCase() === activeCategory.trim().toLowerCase());
+        ? sortedProjects
+        : sortedProjects.filter(p => p.category.trim().toLowerCase() === activeCategory.trim().toLowerCase());
 
     const displayedProjects = activeCategory === "All"
         ? filteredProjects.slice(0, visibleCount)
@@ -289,8 +351,8 @@ export const Projects = () => {
                             transition={{ duration: 0.3 }}
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                         >
-                            {displayedProjects.map((project, index) => (
-                                <ProjectCard key={`${activeCategory}-${project.id}-${index}`} project={project} />
+                            {displayedProjects.map((project) => (
+                                <ProjectCard key={project.id} project={project} />
                             ))}
                         </motion.div>
                     ) : (
