@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase";
 import fs from "fs";
 import path from "path";
 
@@ -7,28 +7,37 @@ import path from "path";
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-    try {
-        // 1. Try to fetch the CV from Supabase Storage
-        const { data } = supabase.storage
-            .from("portfolio-assets")
-            .getPublicUrl("cv/cv.pdf");
+    // Enforce strict no-cache headers so the browser and intermediate proxies never cache the PDF
+    const noCacheHeaders = {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": "inline; filename=\"Lakshan Ekanayaka.pdf\"",
+        "Cache-Control": "no-store, no-cache, must-revalidate, force-revalidate, max-age=0",
+        "Pragma": "no-cache",
+        "Expires": "0",
+    };
 
-        if (data && data.publicUrl) {
-            // Test if the file exists and is accessible
-            const fileResponse = await fetch(data.publicUrl, { method: "GET" });
-            if (fileResponse.ok) {
-                const arrayBuffer = await fileResponse.arrayBuffer();
-                return new NextResponse(arrayBuffer, {
-                    headers: {
-                        "Content-Type": "application/pdf",
-                        "Content-Disposition": "inline; filename=\"Lakshan Ekanayaka.pdf\"",
-                        "Cache-Control": "no-store, no-cache, must-revalidate, proxy-revalidate",
-                    },
-                });
-            }
+    try {
+        // 1. Fetch directly from Supabase Storage using the administrative client
+        // This avoids HTTP fetch overhead, DNS lookup issues, and public RLS policy restrictions.
+        console.log("Proxying CV directly from Supabase Storage...");
+        const { data, error } = await supabaseAdmin.storage
+            .from("portfolio-assets")
+            .download("cv/cv.pdf");
+
+        if (error) {
+            console.warn("Supabase storage CV download error:", error.message || error);
+            throw error;
+        }
+
+        if (data) {
+            const arrayBuffer = await data.arrayBuffer();
+            console.log("Serving fresh CV PDF from Supabase storage, size:", arrayBuffer.byteLength);
+            return new NextResponse(arrayBuffer, {
+                headers: noCacheHeaders,
+            });
         }
     } catch (err) {
-        console.warn("Could not proxy CV from Supabase storage, using local file fallback:", err);
+        console.warn("Could not retrieve CV from Supabase storage, using local file fallback:", err);
     }
 
     // 2. Resilient fallback to the original static public PDF
@@ -36,12 +45,9 @@ export async function GET() {
         const localPath = path.join(process.cwd(), "public", "Lakshan Ekanayaka.pdf");
         if (fs.existsSync(localPath)) {
             const fileBuffer = fs.readFileSync(localPath);
+            console.log("Serving local fallback CV PDF, size:", fileBuffer.length);
             return new NextResponse(fileBuffer, {
-                headers: {
-                    "Content-Type": "application/pdf",
-                    "Content-Disposition": "inline; filename=\"Lakshan Ekanayaka.pdf\"",
-                    "Cache-Control": "public, max-age=3600",
-                },
+                headers: noCacheHeaders, // Enforce no-cache here too so the browser doesn't get stuck on the fallback
             });
         }
     } catch (fallbackErr) {
@@ -50,3 +56,4 @@ export async function GET() {
 
     return new NextResponse("CV file not found.", { status: 404 });
 }
+

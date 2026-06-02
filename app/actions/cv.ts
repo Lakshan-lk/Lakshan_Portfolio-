@@ -40,6 +40,7 @@ export async function uploadCVAction(formData: FormData): Promise<CVUploadResult
             .upload("cv/cv.pdf", fileBuffer, {
                 contentType: "application/pdf",
                 upsert: true, // Key: Overwrite if file already exists!
+                cacheControl: "0", // Key: Disable CDN caching so updates are visible instantly!
             });
 
         if (error) {

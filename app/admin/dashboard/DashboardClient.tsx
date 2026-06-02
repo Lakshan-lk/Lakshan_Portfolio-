@@ -81,6 +81,7 @@ export default function DashboardClient({
     // CV Drag and drop state
     const [selectedCVName, setSelectedCVName] = useState<string | null>(null);
     const [isDraggingCV, setIsDraggingCV] = useState(false);
+    const [cvVersion, setCvVersion] = useState(Date.now());
 
     // Project Screenshot drag state
     const [isDraggingProjectImage, setIsDraggingProjectImage] = useState(false);
@@ -373,6 +374,7 @@ export default function DashboardClient({
                 triggerAlert("success", res.message || "CV uploaded successfully!");
                 form.reset();
                 setSelectedCVName(null);
+                setCvVersion(Date.now());
             } else {
                 triggerAlert("error", res.error || "Failed to upload CV.");
             }
@@ -821,7 +823,55 @@ export default function DashboardClient({
                                 </div>
                             ) : (
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    {certifications.map((c) => (
+                                    {[...certifications].sort((a, b) => {
+                                        if (a.created_at && b.created_at) {
+                                            const timeA = new Date(a.created_at).getTime();
+                                            const timeB = new Date(b.created_at).getTime();
+                                            const diff = Math.abs(timeA - timeB);
+                                            if (diff > 60000) {
+                                                return timeB - timeA;
+                                            }
+                                        }
+
+                                        const getFallbackIndex = (c: any) => {
+                                            const clean = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+                                            const fallbackCerts = [
+                                                "Introduction to Web Development with ChatGPT",
+                                                "Introduction to Figma",
+                                                "Introduction to Graphic Design; Basics of UI/UX",
+                                                "Introduction to Graphic Design Basics of UI/UX",
+                                                "Website UI/UX Designing using ChatGPT : Become a UI UX designer",
+                                                "Website UI/UX Designing using ChatGPT Become a UI UX designer",
+                                                "Design Thinking for Beginners",
+                                                "Python For Beginners",
+                                                "Python Programming",
+                                                "Web Design for Beginners",
+                                                "AI/ML Engineer - Stage 1",
+                                                "AI/ML Engineer - Stage 2",
+                                                "AI/ML Engineer Stage 1",
+                                                "AI/ML Engineer Stage 2"
+                                            ];
+                                            return fallbackCerts.findIndex(
+                                                title => clean(c.title) === clean(title) || clean(c.title).includes(clean(title)) || clean(title).includes(clean(c.title))
+                                            );
+                                        };
+
+                                        const idxA = getFallbackIndex(a);
+                                        const idxB = getFallbackIndex(b);
+
+                                        if (idxA !== -1 && idxB !== -1) {
+                                            return idxB - idxA;
+                                        }
+
+                                        if (idxA === -1 && idxB !== -1) return -1;
+                                        if (idxB === -1 && idxA !== -1) return 1;
+
+                                        if (a.created_at && b.created_at) {
+                                            return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+                                        }
+
+                                        return b.id - a.id;
+                                    }).map((c) => (
                                         <div
                                             key={c.id}
                                             className="bg-slate-900/40 border border-white/10 p-5 rounded-2xl backdrop-blur-sm flex items-center gap-5 justify-between text-left"
@@ -1039,7 +1089,7 @@ export default function DashboardClient({
                                 <div className="mt-8 pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 text-xs font-mono text-gray-400">
                                     <div className="flex flex-col">
                                         <span>Active Link Endpoint:</span>
-                                        <a href="/Lakshan Ekanayaka.pdf" target="_blank" className="text-cyan-400 hover:underline flex items-center gap-1 mt-0.5">
+                                        <a href={`/Lakshan Ekanayaka.pdf?v=${cvVersion}`} target="_blank" className="text-cyan-400 hover:underline flex items-center gap-1 mt-0.5">
                                             <span>/Lakshan Ekanayaka.pdf</span>
                                             <ExternalLink size={10} />
                                         </a>

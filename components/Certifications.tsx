@@ -14,6 +14,7 @@ interface Certification {
     link: string;
     color: string;
     borderColor: string;
+    created_at?: string;
 }
 
 // ---------------------- DATA ----------------------
@@ -157,6 +158,7 @@ export const Certifications = () => {
                         link: c.link || "",
                         color: c.color || "bg-white",
                         borderColor: c.border_color || "group-hover:border-white/50",
+                        created_at: c.created_at,
                     }));
                     setCertList(mappedData);
                 }
@@ -167,8 +169,59 @@ export const Certifications = () => {
         fetchCerts();
     }, []);
 
-    const reversedCertifications = [...certList].reverse();
-    const visibleCertifications = showAll ? reversedCertifications : reversedCertifications.slice(0, 4);
+    // Stable sort: Newest certifications first (latest created_at or highest local id first)
+    const sortedCertifications = [...certList].sort((a, b) => {
+        if (a.created_at && b.created_at) {
+            const timeA = new Date(a.created_at).getTime();
+            const timeB = new Date(b.created_at).getTime();
+            const diff = Math.abs(timeA - timeB);
+            
+            if (diff > 60000) {
+                return timeB - timeA;
+            }
+        }
+
+        const getFallbackIndex = (c: any) => {
+            const clean = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+            const fallbackCerts = [
+                "Introduction to Web Development with ChatGPT",
+                "Introduction to Figma",
+                "Introduction to Graphic Design; Basics of UI/UX",
+                "Introduction to Graphic Design Basics of UI/UX",
+                "Website UI/UX Designing using ChatGPT : Become a UI UX designer",
+                "Website UI/UX Designing using ChatGPT Become a UI UX designer",
+                "Design Thinking for Beginners",
+                "Python For Beginners",
+                "Python Programming",
+                "Web Design for Beginners",
+                "AI/ML Engineer - Stage 1",
+                "AI/ML Engineer - Stage 2",
+                "AI/ML Engineer Stage 1",
+                "AI/ML Engineer Stage 2"
+            ];
+            return fallbackCerts.findIndex(
+                title => clean(c.title) === clean(title) || clean(c.title).includes(clean(title)) || clean(title).includes(clean(c.title))
+            );
+        };
+
+        const idxA = getFallbackIndex(a);
+        const idxB = getFallbackIndex(b);
+
+        if (idxA !== -1 && idxB !== -1) {
+            return idxB - idxA;
+        }
+
+        if (idxA === -1 && idxB !== -1) return -1;
+        if (idxB === -1 && idxA !== -1) return 1;
+
+        if (a.created_at && b.created_at) {
+            return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+        }
+
+        return b.id - a.id;
+    });
+
+    const visibleCertifications = showAll ? sortedCertifications : sortedCertifications.slice(0, 4);
 
     return (
         <section id="certifications" className="relative py-24 px-6 md:px-12 bg-transparent">
@@ -194,7 +247,7 @@ export const Certifications = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <AnimatePresence>
                         {mounted && visibleCertifications.map((cert, index) => (
-                            <CertificationCard key={`${cert.id}-${index}`} cert={cert} index={index} />
+                            <CertificationCard key={cert.id} cert={cert} index={index} />
                         ))}
                     </AnimatePresence>
                 </div>
