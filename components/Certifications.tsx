@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Calendar, ChevronDown, ChevronUp, Award, BookOpen, GraduationCap, ShieldCheck } from "lucide-react";
 
@@ -132,8 +132,42 @@ const certifications: Certification[] = [
 
 export const Certifications = () => {
     const [showAll, setShowAll] = useState(false);
+    const [certList, setCertList] = useState<Certification[]>(certifications);
+    const [mounted, setMounted] = useState(false);
 
-    const reversedCertifications = [...certifications].reverse();
+    useEffect(() => {
+        setMounted(true);
+        async function fetchCerts() {
+            try {
+                const { supabase } = await import("@/lib/supabase");
+                const { data, error } = await supabase
+                    .from("certifications")
+                    .select("*")
+                    .order("created_at", { ascending: false });
+
+                if (error) throw error;
+                if (data && data.length > 0) {
+                    const mappedData = data.map((c) => ({
+                        id: c.id,
+                        title: c.title,
+                        org: c.org,
+                        date: c.date,
+                        logo: c.logo,
+                        credentialID: c.credential_id || "",
+                        link: c.link || "",
+                        color: c.color || "bg-white",
+                        borderColor: c.border_color || "group-hover:border-white/50",
+                    }));
+                    setCertList(mappedData);
+                }
+            } catch (err) {
+                console.warn("Using fallback local data for certifications:", err);
+            }
+        }
+        fetchCerts();
+    }, []);
+
+    const reversedCertifications = [...certList].reverse();
     const visibleCertifications = showAll ? reversedCertifications : reversedCertifications.slice(0, 4);
 
     return (
@@ -159,14 +193,14 @@ export const Certifications = () => {
                 {/* Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <AnimatePresence>
-                        {visibleCertifications.map((cert, index) => (
-                            <CertificationCard key={cert.id} cert={cert} index={index} />
+                        {mounted && visibleCertifications.map((cert, index) => (
+                            <CertificationCard key={`${cert.id}-${index}`} cert={cert} index={index} />
                         ))}
                     </AnimatePresence>
                 </div>
 
                 {/* See All Button */}
-                {certifications.length > 4 && (
+                {certList.length > 4 && (
                     <motion.div 
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}

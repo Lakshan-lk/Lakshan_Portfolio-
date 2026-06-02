@@ -153,21 +153,28 @@ export const Skills = () => {
 
 // --- Single Skill Item Component ---
 const SkillItem = ({ skill }: { skill: { name: string, icon: React.ReactNode } }) => {
-    // Random float animation
-    const randomDuration = 3 + Math.random() * 2;
-    const randomY = 3 + Math.random() * 3;
+    const [mounted, setMounted] = React.useState(false);
+
+    React.useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    // Random float animation values calculated only on client after mount
+    const randomDuration = mounted ? 3 + Math.random() * 2 : 4;
+    const randomY = mounted ? 3 + Math.random() * 3 : 0;
+    const delay = mounted ? Math.random() * 2 : 0;
 
     return (
         <motion.div
-            animate={{
+            animate={mounted ? {
                 y: [0, -randomY, 0],
-            }}
-            transition={{
+            } : undefined}
+            transition={mounted ? {
                 duration: randomDuration,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: Math.random() * 2
-            }}
+                delay: delay
+            } : undefined}
             whileHover={{ scale: 1.1, y: -5 }}
             className="flex flex-col items-center gap-2 group/icon cursor-pointer"
         >

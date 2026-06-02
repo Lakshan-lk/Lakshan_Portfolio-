@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, Github, Code2, Figma, Smartphone, Globe, Layers, Layout, LayoutDashboard } from "lucide-react";
 import { FaBehance } from "react-icons/fa";
 import Image from "next/image";
+import { DynamicIcon } from "@/components/DynamicIcon";
 
 interface Project {
     id: number;
@@ -146,7 +147,7 @@ const projects: Project[] = [
         demo: "https://www.figma.com/proto/EaoLyOfpy9t7kosfolXffe/Web-site?page-id=71%3A19&node-id=75-58&viewport=843%2C678%2C0.1&t=TRlMJv3MFaZdfSfU-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=75%3A58"
     },
     {
-        id: 12,
+        id: 13,
         title: "Mag City Website Redesign",
         category: "UI/UX Design",
         description: " Excited to share our Usability Improvement Project for the Mag City website! This project was completed as part of our Human–Computer Interaction (HCI) module, where we focused on enhancing the overall user experience and interface design of an existing platform.",
@@ -156,7 +157,7 @@ const projects: Project[] = [
         demo: "https://www.figma.com/proto/kNxZH97bRLRRTZwfhuiF5K/Project-Magcity?page-id=0%3A1&node-id=614-9695&viewport=-1890%2C6495%2C0.12&t=fi4h8W3MP6Vm3PrJ-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=530%3A2010"
     },
     {
-        id: 13,
+        id: 14,
         title: "Lakshan Portfolio",
         category: "Web Projects",
         description: "My personal interactive portfolio website designed and developed from scratch. Features a futuristic dark theme, glassmorphism UI, and smooth animations to showcase my skills as a UI/UX Designer and Frontend Developer.",
@@ -173,8 +174,41 @@ export const Projects = () => {
     const [activeCategory, setActiveCategory] = useState("All");
     const [visibleCount, setVisibleCount] = useState(6);
     const [isExpanded, setIsExpanded] = useState(false);
+    const [projectList, setProjectList] = useState<any[]>(projects);
+    const [mounted, setMounted] = useState(false);
 
-    const reversedProjects = [...projects].reverse();
+    useEffect(() => {
+        setMounted(true);
+        async function fetchProjects() {
+            try {
+                const { supabase } = await import("@/lib/supabase");
+                const { data, error } = await supabase
+                    .from("projects")
+                    .select("*")
+                    .order("created_at", { ascending: false });
+
+                if (error) throw error;
+                if (data && data.length > 0) {
+                    const mappedData = data.map((p) => ({
+                        id: p.id,
+                        title: p.title,
+                        category: p.category,
+                        description: p.description,
+                        techStack: p.tech_stack || [],
+                        image: p.image,
+                        github: p.github || "",
+                        demo: p.demo || "",
+                    }));
+                    setProjectList(mappedData);
+                }
+            } catch (err) {
+                console.warn("Using fallback local data for projects:", err);
+            }
+        }
+        fetchProjects();
+    }, []);
+
+    const reversedProjects = [...projectList].reverse();
 
     const filteredProjects = activeCategory === "All"
         ? reversedProjects
@@ -189,7 +223,7 @@ export const Projects = () => {
             setVisibleCount(6);
             setIsExpanded(false);
         } else {
-            setVisibleCount(projects.length);
+            setVisibleCount(projectList.length);
             setIsExpanded(true);
         }
     };
@@ -246,18 +280,35 @@ export const Projects = () => {
 
                 {/* Projects Grid */}
                 <AnimatePresence mode="wait">
-                    <motion.div
-                        key={`${activeCategory}-${visibleCount}`}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.3 }}
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-                    >
-                        {displayedProjects.map((project) => (
-                            <ProjectCard key={`${activeCategory}-${project.id}`} project={project} />
-                        ))}
-                    </motion.div>
+                    {mounted ? (
+                        <motion.div
+                            key={`${activeCategory}-${visibleCount}`}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                        >
+                            {displayedProjects.map((project, index) => (
+                                <ProjectCard key={`${activeCategory}-${project.id}-${index}`} project={project} />
+                            ))}
+                        </motion.div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {[...Array(6)].map((_, i) => (
+                                <div key={i} className="flex flex-col rounded-2xl overflow-hidden bg-slate-900/40 border border-white/10 backdrop-blur-sm p-6 h-[450px] animate-pulse">
+                                    <div className="aspect-video bg-slate-800 rounded-xl mb-6" />
+                                    <div className="h-6 bg-slate-800 rounded w-2/3 mb-4" />
+                                    <div className="h-4 bg-slate-800 rounded w-full mb-2" />
+                                    <div className="h-4 bg-slate-800 rounded w-5/6 mb-6" />
+                                    <div className="mt-auto flex gap-4">
+                                        <div className="h-10 bg-slate-800 rounded-lg flex-1" />
+                                        <div className="h-10 bg-slate-800 rounded-lg w-24" />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </AnimatePresence>
 
                 {/* View All / GitHub Actions */}
@@ -352,8 +403,14 @@ const ProjectCard = ({ project }: { project: Project }) => {
                     </h3>
                     <div className="flex gap-2">
                         {project.techStack.map((tech, i) => (
-                            <div key={i} title={tech.name} className="p-1.5 rounded-md bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-colors">
-                                <tech.icon className="w-4 h-4" />
+                            <div key={i} title={tech.name} className="p-1.5 rounded-md bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-center">
+                                {typeof tech.icon === "string" ? (
+                                    <DynamicIcon name={tech.icon} className="w-4 h-4" />
+                                ) : typeof tech.icon === "function" || (tech.icon && typeof tech.icon === "object") ? (
+                                    <tech.icon className="w-4 h-4" />
+                                ) : (
+                                    <Code2 className="w-4 h-4" />
+                                )}
                             </div>
                         ))}
                     </div>

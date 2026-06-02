@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Code2, Figma, Rocket, GraduationCap, Briefcase, Sparkles, School } from "lucide-react";
 import Image from "next/image";
+import { DynamicIcon } from "@/components/DynamicIcon";
 
 // --- Real Data ---
 const timelineData = [
@@ -35,6 +36,38 @@ const timelineData = [
 
 export const About = () => {
     const timelineRef = useRef(null);
+    const [timeline, setTimeline] = useState<any[]>(timelineData);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        async function fetchJourney() {
+            try {
+                const { supabase } = await import("@/lib/supabase");
+                const { data, error } = await supabase
+                    .from("journey")
+                    .select("*")
+                    .order("order", { ascending: true });
+
+                if (error) throw error;
+                if (data && data.length > 0) {
+                    const mappedData = data.map((item) => ({
+                        year: item.year,
+                        title: item.title,
+                        subtitle: item.subtitle,
+                        description: item.description,
+                        iconName: item.icon_name,
+                        tags: item.tags || [],
+                        type: item.type,
+                    }));
+                    setTimeline(mappedData);
+                }
+            } catch (err) {
+                console.warn("Using fallback local data for journey timeline:", err);
+            }
+        }
+        fetchJourney();
+    }, []);
 
     const { scrollYProgress } = useScroll({
         target: timelineRef,
@@ -151,14 +184,16 @@ export const About = () => {
                     <div className="relative max-w-8xl mx-auto">
                         <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[2px] bg-white/10 -translate-x-1/2" />
 
-                        <motion.div
-                            style={{ height: lineHeight }}
-                            className="absolute left-4 md:left-1/2 top-0 w-[2px] bg-gradient-to-b from-cyan-400 via-purple-500 to-cyan-400 -translate-x-1/2 z-0 origin-top"
-                        />
+                        {mounted && (
+                            <motion.div
+                                style={{ height: lineHeight }}
+                                className="absolute left-4 md:left-1/2 top-0 w-[2px] bg-gradient-to-b from-cyan-400 via-purple-500 to-cyan-400 -translate-x-1/2 z-0 origin-top"
+                            />
+                        )}
 
                         {/* CHANGE: Increased vertical spacing between cards */}
                         <div className="space-y-24">
-                            {timelineData.map((item, index) => (
+                            {timeline.map((item, index) => (
                                 <TimelineItem key={index} item={item} index={index} />
                             ))}
                         </div>
@@ -186,7 +221,11 @@ const TimelineItem = ({ item, index }: { item: any; index: number }) => {
 
             {/* Center Icon */}
             <div className="absolute left-4 md:left-1/2 -translate-x-1/2 z-10 flex items-center justify-center w-14 h-14 rounded-full bg-slate-900 border-2 border-cyan-500/50 shadow-[0_0_20px_rgba(6,182,212,0.4)]">
-                <item.icon className="w-6 h-6 text-white" />
+                {item.icon ? (
+                    <item.icon className="w-6 h-6 text-white" />
+                ) : (
+                    <DynamicIcon name={item.iconName} className="w-6 h-6 text-white" />
+                )}
             </div>
 
             {/* Content Card (UPDATED SIZES) */}
