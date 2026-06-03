@@ -67,7 +67,7 @@ export async function GET(request: Request) {
         diagnostics.status = "FALLBACK_TRIGGERED";
         diagnostics.storageError = storageError;
         
-        const localPath = path.join(process.cwd(), "public", "Lakshan Ekanayaka.pdf");
+        const localPath = path.join(process.cwd(), "public", "fallback-cv.pdf");
         diagnostics.localFileExists = fs.existsSync(localPath);
         if (diagnostics.localFileExists) {
             diagnostics.localFileSize = fs.statSync(localPath).size;
@@ -77,7 +77,7 @@ export async function GET(request: Request) {
 
     // 2. Resilient fallback to the original static public PDF
     try {
-        const localPath = path.join(process.cwd(), "public", "Lakshan Ekanayaka.pdf");
+        const localPath = path.join(process.cwd(), "public", "fallback-cv.pdf");
         if (fs.existsSync(localPath)) {
             const fileBuffer = fs.readFileSync(localPath);
             console.log("Serving local fallback CV PDF, size:", fileBuffer.length);
